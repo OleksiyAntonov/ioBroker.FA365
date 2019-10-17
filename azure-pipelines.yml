@@ -6,9 +6,15 @@
 trigger:
 - master
 
-pool:
-  name: Default
-
-- task: GitVersion@5
-  inputs:
-    runtime: 'core'
+stages:
+- stage: stageCompilePackage
+  displayName: 'Compile and publish package'
+  jobs:
+  - job: jobProcessingContent
+    displayName: 'Processing iobroker.homebrain content'
+    pool:
+      name: Default
+    steps:
+    - task: GitVersion@5
+      inputs:
+        runtime: 'core'
