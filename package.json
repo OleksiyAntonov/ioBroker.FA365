@@ -84,7 +84,7 @@
     "instrument": true
   },
   "bugs": {
-    "url": "https://github.com/Author/ioBroker.template/issues"
+    "url": "https://github.com/antonov/ioBroker.homebrain/issues"
   },
   "readmeFilename": "README.md"
 }
