@@ -1,22 +1,22 @@
 {
-  "name": "iobroker.homebrain",
+  "name": "iobroker.fa365",
   "version": "0.0.1",
-  "description": "Ole FA Homeautomation scripts container",
+  "description": "Ole FA365 home automation scripts container",
   "author": {
     "name": "Ole Antonov",
     "email": "oleksiy.antonov@live.com"
   },
-  "homepage": "https://github.com/OleksiyAntonov/ioBroker.homebrain",
+  "homepage": "https://github.com/OleksiyAntonov/ioBroker.FA365",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "homebrain",
+    "FA365",
     "Smart Home",
     "home automation"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/OleksiyAntonov/ioBroker.homebrain"
+    "url": "https://github.com/OleksiyAntonov/ioBroker.FA365"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.1"
@@ -84,7 +84,7 @@
     "instrument": true
   },
   "bugs": {
-    "url": "https://github.com/antonov/ioBroker.homebrain/issues"
+    "url": "https://github.com/antonov/ioBroker.FA365/issues"
   },
   "readmeFilename": "README.md"
 }
