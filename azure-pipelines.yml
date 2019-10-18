@@ -21,6 +21,17 @@ stages:
       inputs:
         command: 'custom'
         customCommand: 'version $(GitVersion.FullSemVer) --no-git-tag-version'
+    - task: replacetokens@3
+      inputs:
+        rootDirectory: '$(Build.Repository.LocalPath)'
+        targetFiles: '**/io-package.json'
+        encoding: 'auto'
+        writeBOM: true
+        escapeType: 'json'
+        actionOnMissing: 'warn'
+        keepToken: false
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
     - task: Npm@1
       inputs:
         command: 'publish'
