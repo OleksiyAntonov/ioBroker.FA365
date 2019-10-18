@@ -19,7 +19,7 @@
     "url": "https://github.com/OleksiyAntonov/ioBroker.homebrain"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^1.0.3"
+    "@iobroker/adapter-core": "^1.0.1"
   },
   "devDependencies": {
     "@iobroker/testing": "^1.2.6",
