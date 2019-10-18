@@ -1,52 +1,25 @@
 {
     "common": {
-        "name": "template",
+        "name": "FA365",
         "version": "0.0.1",
         "news": {
             "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
+                "en": "initial release"
             }
         },
-        "title": "Template (TypeScript)",
+        "title": "FA365 automation",
         "titleLang": {
-            "en": "Template (TypeScript)",
-            "de": "Vorlage (TypeScript)",
-            "ru": "Шаблон (TypeScript)",
-            "pt": "Modelo (TypeScript)",
-            "nl": "Sjabloon (TypeScript)",
-            "fr": "Modèle (TypeScript)",
-            "it": "Modello (TypeScript)",
-            "es": "Plantilla (TypeScript)",
-            "pl": "Szablon (TypeScript)",
-            "zh-cn": "模板（TypeScript）"
+            "en": "FA365 automation"
         },
         "desc": {
-            "en": "Template for adapter development",
-            "de": "Vorlage für die Adapterentwicklung",
-            "ru": "Шаблон для разработки адаптера",
-            "pt": "Modelo para desenvolvimento de adaptadores",
-            "nl": "Sjabloon voor adapterontwikkeling",
-            "fr": "Modèle pour le développement de l'adaptateur",
-            "it": "Modello per lo sviluppo dell'adattatore",
-            "es": "Plantilla para desarrollo de adaptadores",
-            "pl": "Szablon do opracowania adaptera",
-            "zh-cn": "适配器开发的模板"
+            "en": "FA365 home automation logic"
         },
         "authors": [
-            "Author <author@mail.com>"
+            "Author <oleksiy.antonov@live.com>"
         ],
         "keywords": [
             "ioBroker",
-            "template",
+            "FA365",
             "Smart Home",
             "home automation"
         ],
@@ -55,8 +28,8 @@
         "main": "build/main.js",
         "icon": "template.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
-        "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/OleksiyAntonov/ioBroker.homebrain/master/admin/template.png",
+        "readme": "https://github.com/OleksiyAntonov/ioBroker.homebrain/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
         "type": "general",
@@ -66,16 +39,7 @@
         "adminTab": {
             "singleton": true,
             "name": {
-                "en": "Template (TypeScript)",
-                "de": "Vorlage (TypeScript)",
-                "ru": "Шаблон (TypeScript)",
-                "pt": "Modelo (TypeScript)",
-                "nl": "Sjabloon (TypeScript)",
-                "fr": "Modèle (TypeScript)",
-                "it": "Modello (TypeScript)",
-                "es": "Plantilla (TypeScript)",
-                "pl": "Szablon (TypeScript)",
-                "zh-cn": "模板（TypeScript）"
+                "en": "FA365 (TypeScript)"
             },
             "link": "",
             "fa-icon": "info"
