@@ -1,5 +1,7 @@
 trigger:
-- feature/preparation
+  branches:
+    include:
+    - feature/preparation
 
 stages:
 - stage: stageCompilePackage
