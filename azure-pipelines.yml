@@ -13,4 +13,15 @@ stages:
     - task: GitVersion@5
       inputs:
         runtime: 'core'
+    - task: replacetokens@3
+      inputs:
+        rootDirectory: '$(Build.Repository.LocalPath)'
+        targetFiles: '**/io-package.json'
+        encoding: 'auto'
+        writeBOM: true
+        escapeType: 'json'
+        actionOnMissing: 'warn'
+        keepToken: false
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
 
