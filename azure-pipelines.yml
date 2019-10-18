@@ -30,4 +30,4 @@ stages:
         command: 'publish'
         workingDir: '$(Build.Repository.LocalPath)'
         publishRegistry: 'useFeed'
-        publishFeed: '0141a56e-c2c5-4ed4-86a0-84ff0ab12256'
+        publishFeed: 'b15b30a9-c1af-485f-acfd-d136c361288a/0fb21e05-dfe2-4b7a-98fd-c2d899e2dc1c'
