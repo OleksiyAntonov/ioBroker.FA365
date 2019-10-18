@@ -13,21 +13,4 @@ stages:
     - task: GitVersion@5
       inputs:
         runtime: 'core'
-    - task: Npm@1
-      inputs:
-        command: 'install'
-        workingDir: '$(Build.Repository.LocalPath)'
-        customRegistry: 'useFeed'
-        customFeed: '0141a56e-c2c5-4ed4-86a0-84ff0ab12256'
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        customCommand: 'version $(GitVersion.FullSemVer) --no-git-tag-version'
-        customRegistry: 'useFeed'
-        customFeed: '0141a56e-c2c5-4ed4-86a0-84ff0ab12256'
-    - task: Npm@1
-      inputs:
-        command: 'publish'
-        workingDir: '$(Build.Repository.LocalPath)'
-        publishRegistry: 'useFeed'
-        publishFeed: '0141a56e-c2c5-4ed4-86a0-84ff0ab12256'
+
