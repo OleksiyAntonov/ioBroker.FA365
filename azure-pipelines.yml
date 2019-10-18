@@ -1,5 +1,5 @@
 trigger:
-- feature/preparation
+- master
 
 stages:
 - stage: stageCompilePackage
