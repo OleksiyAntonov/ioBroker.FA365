@@ -5,10 +5,10 @@ trigger:
 
 stages:
 - stage: stageCompilePackage
-  displayName: 'Compile and publish package'
+  displayName: 'Compile and test package'
   jobs:
   - job: jobProcessingContent
-    displayName: 'Processing iobroker.homebrain content'
+    displayName: 'Processing iobroker.fa365 content'
     pool:
       name: Default
     steps:
