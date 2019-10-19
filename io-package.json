@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "FA365",
-        "version": "0.0.1",
+        "version": "GitVersion.FullSemVer",
         "news": {
-            "0.0.1": {
+            "GitVersion.FullSemVer": {
                 "en": "initial release"
             }
         },
