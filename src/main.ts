@@ -1,27 +1,24 @@
 import * as utils from "@iobroker/adapter-core";
 
-// Load your modules here, e.g.:
-// import * as fs from "fs";
-
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace ioBroker {
 		interface AdapterConfig {
-			// Define the shape of your options here (recommended)
-			option1: boolean;
-			option2: string;
-			// Or use a catch-all approach
+			// define the shape of your options here (recommended)
+			zwaveInstanceName: string;
+			hueInstanceName: string;
+			// or use a catch-all approach
 			[key: string]: any;
 		}
 	}
 }
 
-class Template extends utils.Adapter {
+class Fa365 extends utils.Adapter {
 
 	public constructor(options: Partial<ioBroker.AdapterOptions> = {}) {
 		super({
 			...options,
-			name: "template",
+			name: "fa365",
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("objectChange", this.onObjectChange.bind(this));
@@ -34,9 +31,9 @@ class Template extends utils.Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	private async onReady(): Promise<void> {
-		// Initialize your adapter here
+		// initialize your adapter here
 
-		// The adapters config (in the instance object everything under the attribute "native") is accessible via
+		// the adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
 		this.log.info("config option1: " + this.config.option1);
 		this.log.info("config option2: " + this.config.option2);
@@ -77,7 +74,7 @@ class Template extends utils.Adapter {
 
 		// examples for the checkPassword/checkGroup functions
 		let result = await this.checkPasswordAsync("admin", "iobroker");
-		this.log.info("check user admin pw ioboker: " + result);
+		this.log.info("check user admin pw iobroker: " + result);
 
 		result = await this.checkGroupAsync("admin", "admin");
 		this.log.info("check group user admin group admin: " + result);
@@ -100,10 +97,10 @@ class Template extends utils.Adapter {
 	 */
 	private onObjectChange(id: string, obj: ioBroker.Object | null | undefined): void {
 		if (obj) {
-			// The object was changed
+			// the object was changed
 			this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
 		} else {
-			// The object was deleted
+			// the object was deleted
 			this.log.info(`object ${id} deleted`);
 		}
 	}
@@ -113,10 +110,10 @@ class Template extends utils.Adapter {
 	 */
 	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
 		if (state) {
-			// The state was changed
+			// the state was changed
 			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		} else {
-			// The state was deleted
+			// the state was deleted
 			this.log.info(`state ${id} deleted`);
 		}
 	}
@@ -140,9 +137,9 @@ class Template extends utils.Adapter {
 }
 
 if (module.parent) {
-	// Export the constructor in compact mode
-	module.exports = (options: Partial<ioBroker.AdapterOptions> | undefined) => new Template(options);
+	// export the constructor in compact mode
+	module.exports = (options: Partial<ioBroker.AdapterOptions> | undefined) => new Fa365(options);
 } else {
 	// otherwise start the instance directly
-	(() => new Template())();
+	(() => new Fa365())();
 }
