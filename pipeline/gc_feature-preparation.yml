@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+    - feature/preparation
+
+stages:
+- stage: stageCompilePackage
+  displayName: 'Compile and test package'
+  jobs:
+  - job: jobProcessingContent
+    displayName: 'Processing iobroker.fa365 content'
+    pool:
+      name: Default
+    steps:
+    - task: GitVersion@5
+      inputs:
+        runtime: 'core'
+    - task: replacetokens@3
+      inputs:
+        rootDirectory: '$(Build.Repository.LocalPath)'
+        targetFiles: '**/io-package.json'
+        encoding: 'auto'
+        writeBOM: true
+        escapeType: 'json'
+        actionOnMissing: 'warn'
+        keepToken: false
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
