@@ -15,10 +15,6 @@ stages:
     - task: GitVersion@5
       inputs:
         runtime: 'core'
-    - task: Npm@1
-      inputs:
-        command: 'install'
-        workingDir: '$(Build.Repository.LocalPath)'
     - task: replacetokens@3
       inputs:
         rootDirectory: '$(Build.Repository.LocalPath)'
@@ -32,6 +28,10 @@ stages:
         keepToken: false
         tokenPrefix: '#{'
         tokenSuffix: '}#'
+    - task: Npm@1
+      inputs:
+        command: 'install'
+        workingDir: '$(Build.Repository.LocalPath)'
     - task: Npm@1
       inputs:
         command: 'custom'
