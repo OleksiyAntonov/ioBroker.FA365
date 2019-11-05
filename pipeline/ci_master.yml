@@ -55,3 +55,24 @@ stages:
         command: 'custom'
         customCommand: 'pack'
         workingDir: '$(Build.BinariesDirectory)'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Build.BinariesDirectory)'
+        Contents: |
+          *.tgz
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        CleanTargetFolder: true
+        OverWrite: true
+        preserveTimestamp: true
+    - task: FtpUpload@2
+      inputs:
+        credentialsOption: 'serviceEndpoint'
+        serverEndpoint: 'FTP iob'
+        rootDirectory: '$(Build.ArtifactStagingDirectory)'
+        filePatterns: '**'
+        remoteDirectory: '/'
+        enableUtf8: true
+        clean: false
+        cleanContents: true
+        preservePaths: false
+        trustSSL: true
