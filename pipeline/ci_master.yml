@@ -1,0 +1,42 @@
+trigger:
+  branches:
+    include:
+    - master
+
+stages:
+- stage: stageCompilePackage
+  displayName: 'Compile and test package'
+  jobs:
+  - job: jobProcessingContent
+    displayName: 'Processing iobroker.fa365 content'
+    pool:
+      name: Default
+    steps:
+    - task: GitVersion@5
+      inputs:
+        runtime: 'core'
+    - task: Npm@1
+      inputs:
+        command: 'install'
+        workingDir: '$(Build.Repository.LocalPath)'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'version $(GitVersion.FullSemVer) --no-git-tag-version'
+    - task: replacetokens@3
+      inputs:
+        rootDirectory: '$(Build.Repository.LocalPath)'
+        targetFiles: '**/io-package.json'
+        encoding: 'auto'
+        writeBOM: true
+        escapeType: 'json'
+        actionOnMissing: 'warn'
+        keepToken: false
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
+    - task: Npm@1
+      inputs:
+        command: 'publish'
+        workingDir: '$(Build.Repository.LocalPath)'
+        publishRegistry: 'useFeed'
+        publishFeed: 'b15b30a9-c1af-485f-acfd-d136c361288a/600b4b96-17fe-4839-97bb-95ba62f751cd'
