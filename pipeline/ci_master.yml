@@ -36,17 +36,12 @@ stages:
       inputs:
         SourceFolder: '$(Build.Repository.LocalPath)'
         Contents: |
-          **/io-package.json
-          **/package.json
-          **/readme.md
-          **/admin/
+          /io-package.json
+          /package.json
+          /readme.md
+          /admin/**/*
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
         OverWrite: true
         preserveTimestamp: true
-    - task: Npm@1
-      inputs:
-        command: 'publish'
-        workingDir: '$(Build.Repository.LocalPath)'
-        publishRegistry: 'useFeed'
-        publishFeed: 'b15b30a9-c1af-485f-acfd-d136c361288a/600b4b96-17fe-4839-97bb-95ba62f751cd'
+
