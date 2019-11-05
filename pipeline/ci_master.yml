@@ -36,10 +36,10 @@ stages:
       inputs:
         SourceFolder: '$(Build.Repository.LocalPath)'
         Contents: |
-          /io-package.json
-          /package.json
-          /readme.md
-          /admin/**/*
+          io-package.json
+          package.json
+          readme.md
+          admin/**/*
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
         OverWrite: true
