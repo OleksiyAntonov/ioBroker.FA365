@@ -19,14 +19,12 @@ stages:
       inputs:
         command: 'install'
         workingDir: '$(Build.Repository.LocalPath)'
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        customCommand: 'version $(GitVersion.FullSemVer) --no-git-tag-version'
     - task: replacetokens@3
       inputs:
         rootDirectory: '$(Build.Repository.LocalPath)'
-        targetFiles: '**/io-package.json'
+        targetFiles: |
+          **/io-package.json
+          **/package.json
         encoding: 'auto'
         writeBOM: true
         escapeType: 'json'
@@ -34,6 +32,18 @@ stages:
         keepToken: false
         tokenPrefix: '#{'
         tokenSuffix: '}#'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Build.Repository.LocalPath)'
+        Contents: |
+          **/io-package.json
+          **/package.json
+          **/readme.md
+          **/admin/
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        CleanTargetFolder: true
+        OverWrite: true
+        preserveTimestamp: true
     - task: Npm@1
       inputs:
         command: 'publish'
