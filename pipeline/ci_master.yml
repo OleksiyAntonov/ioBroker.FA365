@@ -35,7 +35,8 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        customCommand: 'run build'        
+        customCommand: 'run build'
+        workingDir: '$(Build.Repository.LocalPath)'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(Build.Repository.LocalPath)'
