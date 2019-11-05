@@ -45,8 +45,13 @@ stages:
           package.json
           README.md
           admin/**/*
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          build/**/*
+        TargetFolder: '$(Build.BinariesDirectory)'
         CleanTargetFolder: true
         OverWrite: true
         preserveTimestamp: true
-
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'run pack'
+        workingDir: '$(Build.BinariesDirectory)'
