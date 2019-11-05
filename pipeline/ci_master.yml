@@ -32,13 +32,17 @@ stages:
         keepToken: false
         tokenPrefix: '#{'
         tokenSuffix: '}#'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'run build'        
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(Build.Repository.LocalPath)'
         Contents: |
           io-package.json
           package.json
-          readme.md
+          README.md
           admin/**/*
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         CleanTargetFolder: true
