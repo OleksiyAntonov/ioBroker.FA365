@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "fa365",
-        "version": "0.2.11",
+        "version": "#{GitVersion.MajorMinorPatch}#",
         "news": {
             "#{GitVersion.FullSemVer}#": {
                 "en": "initial release"
