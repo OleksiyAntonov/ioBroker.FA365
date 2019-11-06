@@ -70,7 +70,7 @@ stages:
         serverEndpoint: 'ftp_iob'
         rootDirectory: '$(Build.ArtifactStagingDirectory)'
         filePatterns: '**'
-        remoteDirectory: '/homes/iot-usr/iotserver/iobroker/upload'
+        remoteDirectory: '/ftp_upload'
         enableUtf8: true
         clean: false
         cleanContents: false
