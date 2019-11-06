@@ -67,12 +67,12 @@ stages:
     - task: FtpUpload@2
       inputs:
         credentialsOption: 'serviceEndpoint'
-        serverEndpoint: 'FTP iob'
+        serverEndpoint: 'ftp_iob'
         rootDirectory: '$(Build.ArtifactStagingDirectory)'
         filePatterns: '**'
-        remoteDirectory: '/'
+        remoteDirectory: '/homes/iot-usr/iotserver/iobroker/upload'
         enableUtf8: true
         clean: false
-        cleanContents: true
+        cleanContents: false
         preservePaths: false
         trustSSL: true
