@@ -70,7 +70,7 @@ stages:
         serverEndpoint: 'ftp_iob'
         rootDirectory: '$(Build.ArtifactStagingDirectory)'
         filePatterns: '**'
-        remoteDirectory: '/ftp_upload'
+        remoteDirectory: '/ftp_upload/0'
         enableUtf8: true
         clean: false
         cleanContents: false
