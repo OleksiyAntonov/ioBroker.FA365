@@ -45,7 +45,7 @@ stages:
           package.json
           README.md
           admin/**/*
-          build/**/*
+          build/**/*.js
         TargetFolder: '$(Build.BinariesDirectory)'
         CleanTargetFolder: true
         OverWrite: true
