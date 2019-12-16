@@ -59,8 +59,8 @@ class Fa365 extends utils.Adapter {
 		// in this template all states changes inside the adapters namespace are subscribed
 		this.subscribeStates("*");
 
-		this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
-		this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
+		// this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
 		this.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
 
 		/*
