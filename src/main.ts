@@ -25,6 +25,9 @@ class Fa365 extends utils.Adapter {
 		this.on("stateChange", this.onStateChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
+
+		this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+		this.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
 	}
 
 	/**
@@ -71,6 +74,8 @@ class Fa365 extends utils.Adapter {
 
 		// same thing, but the state is deleted after 30s (getState will return null afterwards)
 		await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
+
+		// this.subscribeForeignStates(this.config.hueInstanceName));
 
 		// examples for the checkPassword/checkGroup functions
 		let result = await this.checkPasswordAsync("admin", "iobroker");
