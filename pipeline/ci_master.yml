@@ -19,8 +19,8 @@ stages:
       inputs:
         rootDirectory: '$(Build.Repository.LocalPath)'
         targetFiles: |
-          **/io-package.json
           **/package.json
+          **/io-package.json
         encoding: 'auto'
         writeBOM: true
         escapeType: 'json'
