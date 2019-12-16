@@ -25,9 +25,6 @@ class Fa365 extends utils.Adapter {
 		this.on("stateChange", this.onStateChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
-
-		this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
-		this.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
 	}
 
 	/**
@@ -35,9 +32,12 @@ class Fa365 extends utils.Adapter {
 	 */
 	private async onReady(): Promise<void> {
 		// initialize your adapter here
+		this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+		this.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
 
 		// the adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
+
 		this.log.info("Z-Wave instance used: " + this.config.zwaveInstanceName);
 		this.log.info("Philips Hue instance used: " + this.config.hueInstanceName);
 
