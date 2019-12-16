@@ -64,15 +64,3 @@ stages:
         CleanTargetFolder: true
         OverWrite: true
         preserveTimestamp: true
-    - task: FtpUpload@2
-      inputs:
-        credentialsOption: 'serviceEndpoint'
-        serverEndpoint: 'ftp_iob'
-        rootDirectory: '$(Build.ArtifactStagingDirectory)'
-        filePatterns: '**'
-        remoteDirectory: '/ftp_upload'
-        enableUtf8: true
-        clean: false
-        cleanContents: false
-        preservePaths: false
-        trustSSL: true
