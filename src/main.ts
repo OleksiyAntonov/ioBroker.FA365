@@ -1,8 +1,15 @@
-import * as utils from "@iobroker/adapter-core";
+import { Adapter } from "@iobroker/adapter-core";
+
+import { IAdapterReactor } from "./interfaces/IAdapterReactor";
+import { AdapterReactorFactory } from "./factories/AdapterReactorFactory";
+
+// tslint:disable-next-line: typedef
+const stringHash = require("string-hash");
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace ioBroker {
+		// tslint:disable-next-line: interface-name
 		interface AdapterConfig {
 			// define the shape of your options here (recommended)
 			zwaveInstanceName: string;
@@ -13,7 +20,9 @@ declare global {
 	}
 }
 
-class Fa365 extends utils.Adapter {
+export class Fa365 extends Adapter {
+
+	adapterReactor: IAdapterReactor;
 
 	public constructor(options: Partial<ioBroker.AdapterOptions> = {}) {
 		super({
@@ -25,6 +34,8 @@ class Fa365 extends utils.Adapter {
 		this.on("stateChange", this.onStateChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
+
+		this.adapterReactor = (new AdapterReactorFactory()).GetAdapterReactor(this);
 	}
 
 	/**
@@ -61,7 +72,7 @@ class Fa365 extends utils.Adapter {
 
 		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
 		// this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
-		this.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
+		this.adapterReactor.Subscribe();
 
 		/*
 		setState examples
@@ -116,12 +127,9 @@ class Fa365 extends utils.Adapter {
 	 * Is called if a subscribed state changes
 	 */
 	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
+		const hashState: number = stringHash(id);
 		if (state) {
-			// the state was changed
 			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		} else {
-			// the state was deleted
-			this.log.info(`state ${id} deleted`);
 		}
 	}
 
