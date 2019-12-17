@@ -34,7 +34,7 @@ export class Fa365 extends Adapter {
 
 		this.on("ready", this.onReady.bind(this));
 		this.on("objectChange", this.onObjectChange.bind(this));
-		this.on("stateChange", this.adapterReactor.onStateChange.bind(this));
+		this.on("stateChange", this.adapterReactor.onStateChange.bind(this.adapterReactor));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
 
