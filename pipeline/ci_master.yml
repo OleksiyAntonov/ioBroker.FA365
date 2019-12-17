@@ -64,3 +64,10 @@ stages:
         CleanTargetFolder: true
         OverWrite: true
         preserveTimestamp: true
+    - task: WindowsMachineFileCopy@2
+      inputs:
+        SourcePath: '$(Build.ArtifactStagingDirectory)'
+        MachineNames: 'antonovnas'
+        AdminUserName: 'ftp_upload'
+        AdminPassword: '$(targetPassword)'
+        TargetPath: '$(targetFolder)'
