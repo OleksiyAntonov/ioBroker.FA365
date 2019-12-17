@@ -64,10 +64,9 @@ stages:
         CleanTargetFolder: true
         OverWrite: true
         preserveTimestamp: true
-    - task: WindowsMachineFileCopy@2
+    - task: cURLUploader@2
       inputs:
-        SourcePath: '$(Build.ArtifactStagingDirectory)'
-        MachineNames: 'antonovnas'
-        AdminUserName: 'ftp_upload'
-        AdminPassword: '$(targetPassword)'
-        TargetPath: '$(targetFolder)'
+        files: '$(Build.ArtifactStagingDirectory)'
+        authType: 'UserAndPass'
+        url: 'tftp://192.168.2.88'
+        remotePath: 
