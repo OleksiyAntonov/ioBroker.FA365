@@ -66,7 +66,7 @@ stages:
         preserveTimestamp: true
     - task: cURLUploader@2
       inputs:
-        files: '$(Build.ArtifactStagingDirectory)'
+        files: '$(Build.ArtifactStagingDirectory)/*.*'
         authType: 'UserAndPass'
         url: 'tftp://192.168.2.88'
         remotePath: 
