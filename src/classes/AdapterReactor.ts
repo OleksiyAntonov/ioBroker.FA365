@@ -34,7 +34,7 @@ export class AdapterReactor implements IAdapterReactor {
 
     public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
 		const hashState: number = stringHash(id);
-		if (state) {
+		if (state && this.adapterCurrent) {
 			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		}
     }
