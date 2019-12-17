@@ -1,3 +1,6 @@
+// tslint:disable-next-line: typedef
+const stringHash = require("string-hash");
+
 import * as globalConsts from "../consts/GlobalConsts";
 
 import { IAdapterReactor } from "../interfaces/IAdapterReactor";
@@ -21,6 +24,13 @@ export class AdapterReactor implements IAdapterReactor {
 
     public Subscribe(): void {
 		this.adapterCurrent.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
+    }
+
+    public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
+		const hashState: number = stringHash(id);
+		if (state) {
+			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+		}
     }
 
 }
