@@ -9,6 +9,12 @@ import { Fa365 } from "../main";
 
 export class AdapterReactor implements IAdapterReactor {
 
+    /*
+    	this.log.info("Z-Wave instance used: " + this.config.zwaveInstanceName);
+    	this.log.info("Philips Hue instance used: " + this.config.hueInstanceName);
+
+    */
+
     private adapter: unknown;
 
     protected adapterCurrent: Fa365;

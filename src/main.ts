@@ -34,7 +34,6 @@ export class Fa365 extends Adapter {
 
 		this.on("ready", this.onReady.bind(this));
 		this.on("objectChange", this.onObjectChange.bind(this));
-		// this.on("stateChange", this.onStateChange.bind(this));
 		this.on("stateChange", this.adapterReactor.onStateChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
@@ -45,14 +44,6 @@ export class Fa365 extends Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	private async onReady(): Promise<void> {
-		// initialize your adapter here
-
-		// the adapters config (in the instance object everything under the attribute "native") is accessible via
-		// this.config:
-
-		this.log.info("Z-Wave instance used: " + this.config.zwaveInstanceName);
-		this.log.info("Philips Hue instance used: " + this.config.hueInstanceName);
-
 		/*
 		For every state in the system there has to be also an object of type state
 		Here a simple template for a boolean variable named "testVariable"
@@ -123,16 +114,6 @@ export class Fa365 extends Adapter {
 		} else {
 			// the object was deleted
 			this.log.info(`object ${id} deleted`);
-		}
-	}
-
-	/**
-	 * Is called if a subscribed state changes
-	 */
-	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
-		const hashState: number = stringHash(id);
-		if (state) {
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		}
 	}
 
