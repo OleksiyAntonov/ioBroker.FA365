@@ -3,9 +3,6 @@ import { Adapter } from "@iobroker/adapter-core";
 import { IAdapterReactor } from "./interfaces/IAdapterReactor";
 import { AdapterReactorFactory } from "./factories/AdapterReactorFactory";
 
-// tslint:disable-next-line: typedef
-const stringHash = require("string-hash");
-
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace ioBroker {
@@ -49,23 +46,12 @@ export class Fa365 extends Adapter {
 		Here a simple template for a boolean variable named "testVariable"
 		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
 		*/
-		await this.setObjectAsync("testVariable", {
-			type: "state",
-			common: {
-				name: "testVariable",
-				type: "boolean",
-				role: "indicator",
-				read: true,
-				write: true,
-			},
-			native: {},
-		});
+
+		await this.adapterReactor.Initialize();
 
 		// in this template all states changes inside the adapters namespace are subscribed
 		this.subscribeStates("*");
 
-		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
-		// this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
 		this.adapterReactor.Subscribe();
 
 		/*
