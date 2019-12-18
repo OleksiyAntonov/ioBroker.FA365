@@ -1,8 +1,8 @@
 export interface IAdapterReactor {
-    readonly Adapter: unknown;
+	readonly Adapter: unknown;
 
 	Initialize(): Promise<void>;
-    Subscribe(): void;
+	Subscribe(): void;
 
-    onStateChange(id: string, state: ioBroker.State | null | undefined): void;
+	onStateChange(id: string, state: ioBroker.State | null | undefined): void;
 }
