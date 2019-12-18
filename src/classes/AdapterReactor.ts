@@ -29,8 +29,8 @@ export class AdapterReactor implements IAdapterReactor {
 
 	public async Initialize(): Promise<void> {
 
-		this.adapterCurrent.log.info(`initialize`);
-
+		// this.adapterCurrent.log.info(`initialize`);
+/*
 		await this.adapterCurrent.setObjectAsync("hauszaehler", {
 			type: "device",
 			common: {
@@ -56,7 +56,19 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
-	}
+*/
+		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
+			type: "state",
+		common: {
+			name: "hauptzaeler",
+			type: "boolean",
+			role: "indicator",
+			read: true,
+			write: true,
+		},
+		native: {},
+	});
+}
 
 	public Subscribe(): void {
 		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
