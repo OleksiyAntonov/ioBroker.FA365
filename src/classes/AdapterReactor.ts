@@ -28,6 +28,9 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	public async Initialize(): Promise<void> {
+
+		this.adapterCurrent.log.info(`initialize`);
+
 		await this.adapterCurrent.setObjectAsync("hauszaehler", {
 			type: "device",
 			common: {
