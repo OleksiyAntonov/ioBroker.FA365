@@ -49,17 +49,18 @@ export class Fa365 extends Adapter {
 
 		await this.adapterReactor.Initialize();
 
-		await this.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
+		//		await this.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
+		await this.setObjectAsync("hauptzaeler", {
 			type: "state",
-		common: {
-			name: "hauptzaeler",
-			type: "boolean",
-			role: "indicator",
-			read: true,
-			write: true,
-		},
-		native: {},
-	});
+			common: {
+				name: "hauptzaeler",
+				type: "boolean",
+				role: "indicator",
+				read: true,
+				write: true,
+			},
+			native: {},
+		});
 
 		// in this template all states changes inside the adapters namespace are subscribed
 		this.subscribeStates("*");
