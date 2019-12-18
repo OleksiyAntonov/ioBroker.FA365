@@ -50,7 +50,7 @@ export class AdapterReactor implements IAdapterReactor {
 		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
 			type: "state",
 			common: {
-				name: "Hauptzaeler",
+				name: "hauptzaeler",
 				type: "number",
 				read: true
 			},

@@ -71,6 +71,7 @@ export class Fa365 extends Adapter {
 		// this.subscribeForeignStates(this.config.hueInstanceName));
 
 		// examples for the checkPassword/checkGroup functions
+		// tslint:disable-next-line: typedef
 		let result = await this.checkPasswordAsync("admin", "iobroker");
 		this.log.info("check user admin pw iobroker: " + result);
 
