@@ -15,6 +15,7 @@ export class AdapterReactor implements IAdapterReactor {
 	*/
 
 	private adapter: unknown;
+	private electricity: Set<number>;
 
 	protected adapterCurrent: Fa365;
 
@@ -25,6 +26,8 @@ export class AdapterReactor implements IAdapterReactor {
 	constructor(paramAdapter: unknown) {
 		this.adapter = paramAdapter;
 		this.adapterCurrent = (this.adapter) as Fa365;
+
+		this.electricity = new Set();
 	}
 
 	public async Initialize(): Promise<void> {
@@ -54,30 +57,37 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
-/*		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
-			type: "state",
-		common: {
-			name: "hauptzaeler",
-			type: "boolean",
-			role: "indicator",
-			read: true,
-			write: true,
-		},
-		native: {},
-	});*/
-
-}
+	}
 
 	public Subscribe(): void {
 		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
 		// this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
 
 		this.adapterCurrent.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
+
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE33.METER.Electric_-_W_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
+		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+
+		this.electricity.add(stringHash("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1"));
+		this.electricity.add(stringHash("zwave.0.NODE24.METER.Electric_-_W_1"));
+		this.electricity.add(stringHash("zwave.0.NODE33.METER.Electric_-_W_1"));
+		this.electricity.add(stringHash("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1"));
+		this.electricity.add(stringHash("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1"));
+		this.electricity.add(stringHash("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1"));
+		this.electricity.add(stringHash("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1"));
 	}
 
 	public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
 		const hashState: number = stringHash(id);
 		if (state && this.adapterCurrent) {
+			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+		}
+		if (state && this.electricity.has(hashState)) {
 			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		}
 	}
