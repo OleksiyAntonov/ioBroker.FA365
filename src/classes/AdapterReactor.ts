@@ -29,12 +29,10 @@ export class AdapterReactor implements IAdapterReactor {
 
 	public async Initialize(): Promise<void> {
 
-		// this.adapterCurrent.log.info(`initialize`);
-/*
 		await this.adapterCurrent.setObjectAsync("hauszaehler", {
 			type: "device",
 			common: {
-				name: "Hauszaehler"
+				name: "hauszaehler"
 			},
 			native: {},
 		});
@@ -43,7 +41,7 @@ export class AdapterReactor implements IAdapterReactor {
 		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom", {
 			type: "channel",
 			common: {
-				name: "Wechselstrom"
+				name: "wechselstrom"
 			},
 			native: {},
 		});
@@ -56,8 +54,7 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
-*/
-		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
+/*		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
 			type: "state",
 		common: {
 			name: "hauptzaeler",
@@ -67,7 +64,8 @@ export class AdapterReactor implements IAdapterReactor {
 			write: true,
 		},
 		native: {},
-	});
+	});*/
+
 }
 
 	public Subscribe(): void {
