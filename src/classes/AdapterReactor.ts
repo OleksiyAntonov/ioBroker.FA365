@@ -82,14 +82,37 @@ export class AdapterReactor implements IAdapterReactor {
 		this.electricity.add(stringHash("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1"));
 	}
 
-	public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
-		const hashState: number = stringHash(id);
-		if (state && this.adapterCurrent) {
-			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		}
-		if (state && this.electricity.has(hashState)) {
-			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		}
+	private async getWechselstrom(paramStateName: string): Promise<number> {
+		let stateWechselstrom =
+			await this.adapterCurrent.getForeignStateAsync(paramStateName);
+		return stateWechselstrom ? stateWechselstrom.val : 0;
 	}
 
+	private async getWechselstromTotal(): Promise<void> {
+		this.adapterCurrent.log.info(`Start Total`);
+		let currentWechselstrom: number = 0;
+		let counters: string[] = [];
+
+		// getWechselstrom("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1")
+		counters.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+
+		for (let item of counters) {
+			currentWechselstrom += await this.getWechselstrom(item);
+		}
+
+		this.adapterCurrent.log.info(`Total: ${currentWechselstrom}`);
+		// return currentWechselstrom;
+		this.adapterCurrent.log.info(`End Total`);
+	}
+
+	public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
+		const hashState: number = stringHash(id);
+		if (state && this.electricity.has(hashState)) {
+			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+			// tslint:disable-next-line: no-unused-expression
+			(async() => await this.getWechselstromTotal());
+			// await this.adapterCurrent.setStateAsync("testVariable", { val: true, ack: true });
+		}
+	}
 }
