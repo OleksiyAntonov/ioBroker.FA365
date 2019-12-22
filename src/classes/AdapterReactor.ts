@@ -29,6 +29,7 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent = (this.adapter) as Fa365;
 
 		this.electricityHashes = new Set();
+		this.electricityNames = [];
 	}
 
 	public async Initialize(): Promise<void> {
