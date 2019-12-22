@@ -105,13 +105,15 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent.log.info(`End Total`);
 	}
 
-	public onStateChange(id: string, state: ioBroker.State | null | undefined): void {
+	public async onStateChange(
+		id: string,
+		state: ioBroker.State | null | undefined
+	): Promise<void> {
 		const hashState: number = stringHash(id);
 		if (state && this.electricity.has(hashState)) {
 			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-			// tslint:disable-next-line: no-unused-expression
-			(async() => await this.getWechselstromTotal());
+			await this.getWechselstromTotal();
 			// await this.adapterCurrent.setStateAsync("testVariable", { val: true, ack: true });
 		}
 	}
