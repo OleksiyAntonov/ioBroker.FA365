@@ -90,8 +90,7 @@ export class AdapterReactor implements IAdapterReactor {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
-		return currentWechselstrom;
-		// this.adapterCurrent.log.info(`Total: ${currentWechselstrom}`);
+		return Math.round(currentWechselstrom);
 	}
 
 	public async onStateChange(
