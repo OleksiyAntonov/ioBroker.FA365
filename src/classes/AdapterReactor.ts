@@ -55,6 +55,7 @@ export class AdapterReactor implements IAdapterReactor {
 			common: {
 				name: "hauptzaeler",
 				type: "number",
+				role: "indicator",
 				read: true
 			},
 			native: {},
@@ -62,11 +63,6 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	public Subscribe(): void {
-		// this.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
-		// this.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
-
-		this.adapterCurrent.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
-
 		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
 		this.electricityNames.push("zwave.0.NODE24.METER.Electric_-_W_1");
 		this.electricityNames.push("zwave.0.NODE33.METER.Electric_-_W_1");
@@ -79,22 +75,6 @@ export class AdapterReactor implements IAdapterReactor {
 			this.adapterCurrent.subscribeForeignStates(item);
 			this.electricityHashes.add(stringHash(item));
 		}
-/*
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE33.METER.Electric_-_W_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
-		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
-
-		this.electricityHashes.add(stringHash("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE24.METER.Electric_-_W_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE33.METER.Electric_-_W_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1"));
-		this.electricityHashes.add(stringHash("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1"));*/
 	}
 
 	private async getWechselstrom(paramStateName: string): Promise<number> {
@@ -103,21 +83,15 @@ export class AdapterReactor implements IAdapterReactor {
 		return stateWechselstrom ? stateWechselstrom.val : 0;
 	}
 
-	private async getWechselstromTotal(): Promise<void> {
-		this.adapterCurrent.log.info(`Start Total`);
+	private async getWechselstromTotal(): Promise<number> {
 		let currentWechselstrom: number = 0;
-		// let counters: string[] = [];
-
-		// getWechselstrom("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1")
-		// counters.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
 
 		for (let item of this.electricityNames) {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
-		this.adapterCurrent.log.info(`Total: ${currentWechselstrom}`);
-		// return currentWechselstrom;
-		this.adapterCurrent.log.info(`End Total`);
+		return currentWechselstrom;
+		// this.adapterCurrent.log.info(`Total: ${currentWechselstrom}`);
 	}
 
 	public async onStateChange(
@@ -128,8 +102,10 @@ export class AdapterReactor implements IAdapterReactor {
 		if (state && this.electricityHashes.has(hashState)) {
 			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-			await this.getWechselstromTotal();
-			// await this.adapterCurrent.setStateAsync("testVariable", { val: true, ack: true });
+			await this.adapterCurrent.setStateAsync(
+				"hauszaehler.wechselstrom.hauptzaeler",
+				{ val: await this.getWechselstromTotal(), ack: true }
+			);
 		}
 	}
 }
