@@ -15,7 +15,8 @@ export class AdapterReactor implements IAdapterReactor {
 	*/
 
 	private adapter: unknown;
-	private electricity: Set<number>;
+	private electricityHashes: Set<number>;
+	private electricityNames: string[];
 
 	protected adapterCurrent: Fa365;
 
@@ -27,7 +28,7 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapter = paramAdapter;
 		this.adapterCurrent = (this.adapter) as Fa365;
 
-		this.electricity = new Set();
+		this.electricityHashes = new Set();
 	}
 
 	public async Initialize(): Promise<void> {
@@ -65,6 +66,19 @@ export class AdapterReactor implements IAdapterReactor {
 
 		this.adapterCurrent.subscribeForeignStates("hue-extended.0.groups.008-arbeitszimmer.action.on");
 
+		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+		this.electricityNames.push("zwave.0.NODE24.METER.Electric_-_W_1");
+		this.electricityNames.push("zwave.0.NODE33.METER.Electric_-_W_1");
+		this.electricityNames.push("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1");
+		this.electricityNames.push("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1");
+		this.electricityNames.push("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
+		this.electricityNames.push("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+
+		for (let item of this.electricityNames) {
+			this.adapterCurrent.subscribeForeignStates(item);
+			this.electricityHashes.add(stringHash(item));
+		}
+/*
 		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
 		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE24.METER.Electric_-_W_1");
 		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE33.METER.Electric_-_W_1");
@@ -73,13 +87,13 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
 		this.adapterCurrent.subscribeForeignStates("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
 
-		this.electricity.add(stringHash("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1"));
-		this.electricity.add(stringHash("zwave.0.NODE24.METER.Electric_-_W_1"));
-		this.electricity.add(stringHash("zwave.0.NODE33.METER.Electric_-_W_1"));
-		this.electricity.add(stringHash("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1"));
-		this.electricity.add(stringHash("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1"));
-		this.electricity.add(stringHash("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1"));
-		this.electricity.add(stringHash("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE24.METER.Electric_-_W_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE33.METER.Electric_-_W_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1"));
+		this.electricityHashes.add(stringHash("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1"));*/
 	}
 
 	private async getWechselstrom(paramStateName: string): Promise<number> {
@@ -91,12 +105,12 @@ export class AdapterReactor implements IAdapterReactor {
 	private async getWechselstromTotal(): Promise<void> {
 		this.adapterCurrent.log.info(`Start Total`);
 		let currentWechselstrom: number = 0;
-		let counters: string[] = [];
+		// let counters: string[] = [];
 
 		// getWechselstrom("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1")
-		counters.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+		// counters.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
 
-		for (let item of counters) {
+		for (let item of this.electricityNames) {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
@@ -110,7 +124,7 @@ export class AdapterReactor implements IAdapterReactor {
 		state: ioBroker.State | null | undefined
 	): Promise<void> {
 		const hashState: number = stringHash(id);
-		if (state && this.electricity.has(hashState)) {
+		if (state && this.electricityHashes.has(hashState)) {
 			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
 			await this.getWechselstromTotal();
