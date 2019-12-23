@@ -90,7 +90,7 @@ export class AdapterReactor implements IAdapterReactor {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
-		return Math.round(currentWechselstrom);
+		return currentWechselstrom.toFixed(0);
 	}
 
 	public async onStateChange(
@@ -99,7 +99,7 @@ export class AdapterReactor implements IAdapterReactor {
 	): Promise<void> {
 		const hashState: number = stringHash(id);
 		if (state && this.electricityHashes.has(hashState)) {
-			this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			// this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
 			await this.adapterCurrent.setStateAsync(
 				"hauszaehler.wechselstrom.hauptzaeler",
