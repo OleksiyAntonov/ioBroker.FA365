@@ -90,7 +90,8 @@ export class AdapterReactor implements IAdapterReactor {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
-		return currentWechselstrom.toFixed(0);
+		currentWechselstrom = (currentWechselstrom * 10) / 10;
+		return currentWechselstrom;
 	}
 
 	public async onStateChange(
