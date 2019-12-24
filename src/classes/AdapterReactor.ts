@@ -7,6 +7,7 @@ import { IAdapterReactor } from "../interfaces/IAdapterReactor";
 
 import { Fa365 } from "../main";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
+import { SensorOpen } from "../classes/SensorOpen";
 import { SensorsFactory } from "../factories/SensorsFactory";
 
 export class AdapterReactor implements IAdapterReactor {
@@ -22,7 +23,7 @@ export class AdapterReactor implements IAdapterReactor {
 	private electricityNames: string[];
 
 	private sensorsOpenHashes: Set<number>;
-	private sensorsOpen: ISensorOpen[];
+	private sensorsOpen: SensorOpen[];
 
 	// private sensorEingangtuer: ISensorOpen;
 
@@ -96,15 +97,20 @@ export class AdapterReactor implements IAdapterReactor {
 	private async subscribeSensorsOpen(): Promise<void> {
 		this.adapterCurrent.log.info(`Before push`);
 
-		this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
+		let r1 = new SensorsFactory().GetSensorOpenAeon(this, "NODE30");
 
+		// this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
 		this.adapterCurrent.log.info(`After push`);
 
+		await r1.Subscribe(this.sensorsOpenHashes);
+		this.adapterCurrent.log.info(`after await`);
+
+/*
 		for (let sensor of this.sensorsOpen) {
 			this.adapterCurrent.log.info(`Before await`);
 			await sensor.Subscribe(this.sensorsOpenHashes);
 			this.adapterCurrent.log.info(`after await`);
-		}
+		}*/
 	}
 
 /*
