@@ -1,6 +1,12 @@
 ﻿import { ISensorOpen } from "../ISensorOpen";
 
 export interface ISensorsFactory {
-    GetSensorOpenAeon(paramRootUri: string): ISensorOpen;
-    GetSensorOpenFibaro(paramRootUri: string): ISensorOpen;
+    GetSensorOpenAeon(
+		paramAdapter: unknown,
+		paramNodeName: string
+	): ISensorOpen;
+    GetSensorOpenFibaro(
+		paramAdapter: unknown,
+		paramNodeName: string
+	): ISensorOpen;
 }

@@ -4,3 +4,4 @@
 
 export const SensorOpenStateOpened: boolean = true;
 export const SensorOpenStateClosed: boolean = false;
+export const SensorOpenStateName: string = "SENSOR_BINARY.Sensor_1";

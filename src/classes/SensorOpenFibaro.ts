@@ -7,7 +7,11 @@ import { SensorOpen } from "./SensorOpen";
 
 export class SensorOpenFibaro extends SensorOpen {
 
-    public SetState(paramState: boolean | number): void {
-        this.state = (paramState === fibaroConsts.SensorOpenStateOpened);
-    }
+	protected getSensorEventName(): string {
+		return fibaroConsts.SensorOpenStateName;
+	}
+
+	public SetState(paramState: boolean | number): void {
+		this.state = (paramState === fibaroConsts.SensorOpenStateOpened);
+	}
 }

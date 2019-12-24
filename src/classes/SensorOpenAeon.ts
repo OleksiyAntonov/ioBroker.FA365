@@ -7,7 +7,11 @@ import { SensorOpen } from "./SensorOpen";
 
 export class SensorOpenAeon extends SensorOpen {
 
-    public SetState(paramState: boolean | number): void {
-        this.state = (paramState === aeonConsts.SensorOpenStateOpened);
-    }
+	protected getSensorEventName(): string {
+		return aeonConsts.SensorOpenStateName;
+	}
+
+	public SetState(paramState: boolean | number): void {
+		this.state = (paramState === aeonConsts.SensorOpenStateOpened);
+	}
 }

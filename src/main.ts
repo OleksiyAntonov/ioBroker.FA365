@@ -4,8 +4,9 @@ import { IAdapterReactor } from "./interfaces/IAdapterReactor";
 import { AdapterReactorFactory } from "./factories/AdapterReactorFactory";
 
 declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
+
 	namespace ioBroker {
+
 		// tslint:disable-next-line: interface-name
 		interface AdapterConfig {
 			// define the shape of your options here (recommended)
@@ -34,41 +35,12 @@ export class Fa365 extends Adapter {
 		this.on("stateChange", this.adapterReactor.onStateChange.bind(this.adapterReactor));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
-
 	}
 
-	/**
-	 * Is called when databases are connected and adapter received configuration.
-	 */
 	private async onReady(): Promise<void> {
-		/*
-		For every state in the system there has to be also an object of type state
-		Here a simple template for a boolean variable named "testVariable"
-		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-		*/
-
 		await this.adapterReactor.Initialize();
-
-		// in this template all states changes inside the adapters namespace are subscribed
+		await this.adapterReactor.Subscribe();
 		this.subscribeStates("*");
-
-		this.adapterReactor.Subscribe();
-
-		/*
-		setState examples
-		you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-		*/
-		// the variable testVariable is set to true as command (ack=false)
-		await this.setStateAsync("testVariable", true);
-
-		// same thing, but the value is flagged "ack"
-		// ack should be always set to true if the value is received from or acknowledged from the target system
-		await this.setStateAsync("testVariable", { val: true, ack: true });
-
-		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
-
-		// this.subscribeForeignStates(this.config.hueInstanceName));
 
 		// examples for the checkPassword/checkGroup functions
 		// tslint:disable-next-line: typedef

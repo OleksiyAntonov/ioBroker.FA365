@@ -16,3 +16,10 @@ export const initiatorsNames: Array<string> = [
     "Balkontuer",
     "postBox"
 ];
+
+export const roleRoom: string = "room";
+
+export const roomWohnungEingang: string = "eingangWohnung";
+
+export const deviceSensorOpen: string = "sensoroffnen";
+export const deviceChannelSensorOpenWohnungEingang: string = `${deviceSensorOpen}.${roomWohnungEingang}`;

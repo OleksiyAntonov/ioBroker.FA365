@@ -4,15 +4,23 @@ import { ISensorsFactory } from "../interfaces/factories/ISensorsFactory";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
 
 export class SensorsFactory implements ISensorsFactory {
-    GetSensorOpenAeon(paramRootUri: string): ISensorOpen {
+    GetSensorOpenAeon(
+		paramAdapter: unknown,
+		paramNodeName: string
+	): ISensorOpen {
         return new SensorOpenAeon(
-            paramRootUri
+			paramAdapter,
+			paramNodeName
         );
     }
 
-    GetSensorOpenFibaro(paramRootUri: string): ISensorOpen {
+    GetSensorOpenFibaro(
+		paramAdapter: unknown,
+		paramNodeName: string
+	): ISensorOpen {
         return new SensorOpenFibaro(
-            paramRootUri
+			paramAdapter,
+			paramNodeName
         );
     }
 }
