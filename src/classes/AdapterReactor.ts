@@ -102,11 +102,10 @@ export class AdapterReactor implements IAdapterReactor {
 		// this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
 		this.adapterCurrent.log.info(`After push`);
 
-		if (r1) {
-			this.adapterCurrent.log.info(`exists`);
-		}
+		const res: number = await r1.Subscribe();
+		this.adapterCurrent.log.info(`8`);
 
-		await r1.Subscribe(this.sensorsOpenHashes);
+		this.sensorsOpenHashes.add(res);
 		this.adapterCurrent.log.info(`after await`);
 
 /*

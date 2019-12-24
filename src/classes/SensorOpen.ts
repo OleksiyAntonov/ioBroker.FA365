@@ -109,9 +109,7 @@ export abstract class SensorOpen implements ISensorOpen {
 
 	public abstract SetState(paramState: boolean | number): void;
 
-	public async Subscribe(
-		paramHashes: Set<number>
-	): Promise<void> {
+	public async Subscribe(): Promise<number> {
 		this.adapterCurrent.log.info(`0`);
 		const eventName: string = this.GetFqnn(
 			this.adapterCurrent.config.zwaveInstanceName,
@@ -120,8 +118,7 @@ export abstract class SensorOpen implements ISensorOpen {
 		this.adapterCurrent.log.info(`1`);
 		await this.adapterCurrent.subscribeForeignStatesAsync(eventName);
 		this.adapterCurrent.log.info(`2`);
-		paramHashes.add(stringHash(eventName));
-		this.adapterCurrent.log.info(`3`);
+		return stringHash(eventName);
 	}
 
 	public GetFqnn(

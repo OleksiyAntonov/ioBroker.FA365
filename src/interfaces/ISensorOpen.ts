@@ -14,9 +14,7 @@ export interface ISensorOpen {
 	/*
 		Subscribe to source events (by initiator)
 	*/
-	Subscribe(
-		paramHashes: Set<number>
-	): Promise<void>;
+	Subscribe(): Promise<number>;
 
 	/*
 		Return full qualified node name (FQNN)
