@@ -2,7 +2,7 @@ export interface IAdapterReactor {
 	readonly Adapter: unknown;
 
 	Initialize(): Promise<void>;
-	Subscribe(): void;
+	Subscribe(): Promise<void>;
 
-	onStateChange(id: string, state: ioBroker.State | null | undefined): void;
+	onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void>;
 }

@@ -40,6 +40,7 @@ export class Fa365 extends Adapter {
 	private async onReady(): Promise<void> {
 		await this.adapterReactor.Initialize();
 		await this.adapterReactor.Subscribe();
+
 		this.subscribeStates("*");
 
 		// examples for the checkPassword/checkGroup functions

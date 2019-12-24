@@ -178,7 +178,7 @@ export class AdapterReactor implements IAdapterReactor {
 		const hashState: number = stringHash(id);
 		if (state) {
 			if (this.electricityHashes.has(hashState)) {
-				// this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+				this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 				await this.adapterCurrent.setStateAsync(
 					"hauszaehler.wechselstrom.hauptzaeler",
 					{ val: await this.getWechselstromTotal(), ack: true }
