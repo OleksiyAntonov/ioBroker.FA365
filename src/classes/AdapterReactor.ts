@@ -100,7 +100,7 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent.log.info(this.adapterCurrent.config.zwaveInstanceName);
 		this.adapterCurrent.log.info(`After push1`);
 
-		const res: number = await r1.Subscribe(this.adapterCurrent.config.zwaveInstanceName);
+		const res: number = await r1.Subscribe("zwave.0");
 		this.adapterCurrent.log.info(`8`);
 
 		this.sensorsOpenHashes.add(res);

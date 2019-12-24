@@ -129,8 +129,9 @@ export abstract class SensorOpen implements ISensorOpen {
 		paramInstanceId: string,
 		paramNodeId: string
 	): string {
-		const eventName: string = this.getSensorEventName();
-		return `${paramInstanceId}.${paramNodeId}.${eventName}`;
+		// const eventName: string = this.getSensorEventName();
+		// return `${paramInstanceId}.${paramNodeId}.${eventName}`;
+		return `${paramInstanceId}.${paramNodeId}.zibn`;
 	}
 
 }
