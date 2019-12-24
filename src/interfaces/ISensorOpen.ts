@@ -14,7 +14,9 @@ export interface ISensorOpen {
 	/*
 		Subscribe to source events (by initiator)
 	*/
-	Subscribe(): Promise<number>;
+	Subscribe(
+		paramZwaveInstanceName: string
+	): Promise<number>;
 
 	/*
 		Return full qualified node name (FQNN)
