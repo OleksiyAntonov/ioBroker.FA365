@@ -62,10 +62,6 @@ export class AdapterReactor implements IAdapterReactor {
 			native: {},
 		});
 
-		for (let sensor of this.sensorsOpen) {
-			await sensor.Register();
-		}
-
 		// setup devices/channels
 		await this.adapterCurrent.setObjectAsync("hauszaehler", {
 			type: "device",
@@ -97,7 +93,7 @@ export class AdapterReactor implements IAdapterReactor {
 	private async subscribeSensorsOpen(): Promise<void> {
 		this.adapterCurrent.log.info(`Before push`);
 
-		let r1 = new SensorsFactory().GetSensorOpenAeon(this, "NODE30");
+		let r1 = ((new SensorsFactory()).GetSensorOpenAeon(this, "NODE30"));
 
 		// this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
 		this.adapterCurrent.log.info(`After push`);
@@ -109,6 +105,10 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent.log.info(`after await`);
 
 /*
+		for (let sensor of this.sensorsOpen) {
+			await sensor.Register();
+		}
+
 		for (let sensor of this.sensorsOpen) {
 			this.adapterCurrent.log.info(`Before await`);
 			await sensor.Subscribe(this.sensorsOpenHashes);
