@@ -97,6 +97,8 @@ export class AdapterReactor implements IAdapterReactor {
 
 		// this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
 		this.adapterCurrent.log.info(`After push`);
+		this.adapterCurrent.log.info(this.adapterCurrent.config.zwaveInstanceName);
+		this.adapterCurrent.log.info(`After push1`);
 
 		const res: number = await r1.Subscribe(this.adapterCurrent.config.zwaveInstanceName);
 		this.adapterCurrent.log.info(`8`);
