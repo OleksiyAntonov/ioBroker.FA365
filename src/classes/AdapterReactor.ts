@@ -94,10 +94,16 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	private async subscribeSensorsOpen(): Promise<void> {
+		this.adapterCurrent.log.info(`Before push`);
+
 		this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
 
+		this.adapterCurrent.log.info(`After push`);
+
 		for (let sensor of this.sensorsOpen) {
+			this.adapterCurrent.log.info(`Before await`);
 			await sensor.Subscribe(this.sensorsOpenHashes);
+			this.adapterCurrent.log.info(`after await`);
 		}
 	}
 
