@@ -108,7 +108,6 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	private async subscribeSensorsOpen(): Promise<void> {
-		this.adapterCurrent.log.info(`Before set`);
 		this.addDeviceOpenSensor(
 			new SensorsFactory().GetSensorOpenAeon(this.adapterCurrent.config.zwaveInstanceName, "NODE30"));
 		this.adapterCurrent.log.info(`After set`);
@@ -182,7 +181,7 @@ export class AdapterReactor implements IAdapterReactor {
 				);
 			} else {
 				if (this.sensorsOpens.has(hashState)) {
-				this.adapterCurrent.log.info(`Eingangtur opened`);
+					this.adapterCurrent.log.info(`Eingangtur opened`);
 				}
 			}
 		}
