@@ -68,7 +68,11 @@ export class AdapterReactor implements IAdapterReactor {
 		await this.adapterCurrent.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
 			type: "state",
 			common: {
-				name: globalConsts.stateOpenedName
+				name: globalConsts.stateOpenedName,
+				type: "number",
+				role: "indicator",
+				read: true,
+				write: false
 			},
 			native: {},
 		});
@@ -174,9 +178,9 @@ export class AdapterReactor implements IAdapterReactor {
 		const hashState: number = stringHash(id);
 		if (state) {
 			if (this.electricityHashes.has(hashState)) {
-				this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+				// this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 				await this.adapterCurrent.setStateAsync(
-					"hauszaehler.wechselstrom.hauptzaeler",
+					globalConsts.hauptzaehlerWechselstromUri,
 					{ val: await this.getWechselstromTotal(), ack: true }
 				);
 			} else {
