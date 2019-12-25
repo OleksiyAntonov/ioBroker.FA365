@@ -4,4 +4,4 @@
 
 export const SensorOpenStateOpened: number = 255;
 export const SensorOpenStateClosed: number = 0;
-export const SensorOpenStateName: string = "BASIC.basic";
+export const SensorOpenStateName: string = "BASIC.Basic";
