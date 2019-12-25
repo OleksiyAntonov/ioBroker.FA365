@@ -28,7 +28,7 @@ export const stateOpenedName: string = "offnen";
 export const hostWettstettenUri: string = hostWettstettenName;
 export const roomWohnungEingangUri: string = `${hostWettstettenUri}.${roomWohnungEingangName}`;
 export const channelWohnungEingangTuerUri: string = `${roomWohnungEingangUri}.${channelTuerName}`;
-export const channelWohnungEingangTuerStateOpenedUri: string = `${roomWohnungEingangUri}.${channelTuerName}`;
+export const channelWohnungEingangTuerStateOpenedUri: string = `${channelWohnungEingangTuerUri}.${stateOpenedName}`;
 
 export const hauszaehlerName: string = "hauszaehler";
 export const wechselstromName: string = "wechselstrom";
