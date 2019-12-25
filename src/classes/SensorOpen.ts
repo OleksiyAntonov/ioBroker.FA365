@@ -117,7 +117,6 @@ export abstract class SensorOpen implements ISensorOpen {
 			paramZwaveInstanceName,
 			this.nodeName
 		);
-		this.adapterCurrent.log.info(`1`);
 		/*
 		await this.adapterCurrent.subscribeForeignStatesAsync(eventName);
 		this.adapterCurrent.log.info(`2`);
@@ -129,10 +128,8 @@ export abstract class SensorOpen implements ISensorOpen {
 		paramInstanceId: string,
 		paramNodeId: string
 	): string {
-		// const eventName: string = this.getSensorEventName();
-		// return `${paramInstanceId}.${paramNodeId}.${eventName}`;
-		// return `${paramInstanceId}.${paramNodeId}.zibn`;
-		return `.zibn`;
+		const eventName: string = this.getSensorEventName();
+		return `${paramInstanceId}.${paramNodeId}.${eventName}`;
 	}
 
 }
