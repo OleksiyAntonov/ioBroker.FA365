@@ -2,11 +2,11 @@
 
 export interface ISensorsFactory {
     GetSensorOpenAeon(
-		paramAdapter: unknown,
+		paramZwaveInstanceName: string,
 		paramNodeName: string
 	): ISensorOpen;
     GetSensorOpenFibaro(
-		paramAdapter: unknown,
+		paramZwaveInstanceName: string,
 		paramNodeName: string
 	): ISensorOpen;
 }

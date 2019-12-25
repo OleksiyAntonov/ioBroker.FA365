@@ -22,16 +22,11 @@ export class AdapterReactor implements IAdapterReactor {
 	private electricityHashes: Set<number>;
 	private electricityNames: string[];
 
-	private sensorsOpenHashes: Set<number>;
-	private sensorsOpen: SensorOpen[];
+	private sensorsOpens: Map<number, ISensorOpen>;
 
 	// private sensorEingangtuer: ISensorOpen;
 
 	protected adapterCurrent: Fa365;
-
-	public get Adapter(): unknown {
-		return this.adapter;
-	}
 
 	constructor(paramAdapter: unknown) {
 		this.adapter = paramAdapter;
@@ -41,47 +36,61 @@ export class AdapterReactor implements IAdapterReactor {
 		this.electricityNames = [];
 
 		// this.sensorEingangtuer = new SensorsFactory().GetSensorOpenAeon(this, "NODE30");
-		this.sensorsOpenHashes = new Set();
-		this.sensorsOpen = [];
+		this.sensorsOpens = new Map<number, ISensorOpen>();
 	}
 
 	public async Initialize(): Promise<void> {
-		await this.adapterCurrent.setObjectAsync(globalConsts.deviceSensorOpen, {
-			type: "device",
+		/*
+			Creation of home configuration rooms/devices/channels
+		*/
+		await this.adapterCurrent.setObjectAsync(globalConsts.hostWettstettenUri, {
+			type: "host",
 			common: {
-				name: globalConsts.deviceSensorOpen
+				name: globalConsts.hostWettstettenName
 			},
 			native: {},
 		});
-		await this.adapterCurrent.setObjectAsync(globalConsts.deviceChannelSensorOpenWohnungEingang, {
+		await this.adapterCurrent.setObjectAsync(globalConsts.roomWohnungEingangUri, {
 			type: "channel",
 			common: {
-				name: globalConsts.roomWohnungEingang,
+				name: globalConsts.roomWohnungEingangName,
 				role: globalConsts.roleRoom
 			},
 			native: {},
 		});
-
-		// setup devices/channels
-		await this.adapterCurrent.setObjectAsync("hauszaehler", {
+		await this.adapterCurrent.setObjectAsync(globalConsts.channelWohnungEingangTuerUri, {
+			type: "channel",
+			common: {
+				name: globalConsts.channelTuerName
+			},
+			native: {},
+		});
+		await this.adapterCurrent.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
+			type: "state",
+			common: {
+				name: globalConsts.stateOpenedName
+			},
+			native: {},
+		});
+		await this.adapterCurrent.setObjectAsync(globalConsts.hauszaehlerUri, {
 			type: "device",
 			common: {
-				name: "hauszaehler"
+				name: globalConsts.hauszaehlerName
 			},
 			native: {},
 		});
 		// wechselstrom
-		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom", {
+		await this.adapterCurrent.setObjectAsync(globalConsts.hauszaehlerWechselstromUri, {
 			type: "channel",
 			common: {
-				name: "wechselstrom"
+				name: globalConsts.wechselstromName
 			},
 			native: {},
 		});
-		await this.adapterCurrent.setObjectAsync("hauszaehler.wechselstrom.hauptzaeler", {
+		await this.adapterCurrent.setObjectAsync(globalConsts.hauptzaehlerWechselstromUri, {
 			type: "state",
 			common: {
-				name: "hauptzaeler",
+				name: globalConsts.hauptzaehlerName,
 				type: "number",
 				role: "indicator",
 				read: true
@@ -90,32 +99,18 @@ export class AdapterReactor implements IAdapterReactor {
 		});
 	}
 
+	private addDeviceOpenSensor(
+		paramSensor: ISensorOpen
+	): void {
+		this.sensorsOpens.set(paramSensor.SourceEventHash, paramSensor);
+		this.adapterCurrent.subscribeForeignStates(paramSensor.Fqnn);
+	}
+
 	private async subscribeSensorsOpen(): Promise<void> {
-		this.adapterCurrent.log.info(`Before push`);
-
-		let r1 = ((new SensorsFactory()).GetSensorOpenAeon(this, "NODE30"));
-
-		// this.sensorsOpen.push(new SensorsFactory().GetSensorOpenAeon(this, "NODE30"));
-		this.adapterCurrent.log.info(`After push`);
-		this.adapterCurrent.log.info(this.adapterCurrent.config.zwaveInstanceName);
-		this.adapterCurrent.log.info(`After push1`);
-
-		const res: number = await r1.Subscribe("zwave.0");
-		this.adapterCurrent.log.info(`8`);
-
-		this.sensorsOpenHashes.add(res);
-		this.adapterCurrent.log.info(`after await`);
-
-/*
-		for (let sensor of this.sensorsOpen) {
-			await sensor.Register();
-		}
-
-		for (let sensor of this.sensorsOpen) {
-			this.adapterCurrent.log.info(`Before await`);
-			await sensor.Subscribe(this.sensorsOpenHashes);
-			this.adapterCurrent.log.info(`after await`);
-		}*/
+		this.adapterCurrent.log.info(`Before set`);
+		this.addDeviceOpenSensor(
+			new SensorsFactory().GetSensorOpenAeon(this.adapterCurrent.config.zwaveInstanceName, "NODE30"));
+		this.adapterCurrent.log.info(`After set`);
 	}
 
 /*
@@ -185,7 +180,7 @@ export class AdapterReactor implements IAdapterReactor {
 					{ val: await this.getWechselstromTotal(), ack: true }
 				);
 			} else {
-				if (this.sensorsOpenHashes.has(hashState)) {
+				if (this.sensorsOpens.has(hashState)) {
 				this.adapterCurrent.log.info(`Eingangtur opened`);
 				}
 			}

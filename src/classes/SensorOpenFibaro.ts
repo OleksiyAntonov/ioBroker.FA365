@@ -7,7 +7,7 @@ import { SensorOpen } from "./SensorOpen";
 
 export class SensorOpenFibaro extends SensorOpen {
 
-	protected getSensorEventName(): string {
+	protected getSensorSourceEventName(): string {
 		return fibaroConsts.SensorOpenStateName;
 	}
 

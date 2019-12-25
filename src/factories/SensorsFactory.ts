@@ -5,21 +5,21 @@ import { ISensorOpen } from "../interfaces/ISensorOpen";
 
 export class SensorsFactory implements ISensorsFactory {
     GetSensorOpenAeon(
-		paramAdapter: unknown,
+		paramZwaveInstanceName: string,
 		paramNodeName: string
 	): ISensorOpen {
         return new SensorOpenAeon(
-			paramAdapter,
+			paramZwaveInstanceName,
 			paramNodeName
         );
     }
 
     GetSensorOpenFibaro(
-		paramAdapter: unknown,
+		paramZwaveInstanceName: string,
 		paramNodeName: string
 	): ISensorOpen {
         return new SensorOpenFibaro(
-			paramAdapter,
+			paramZwaveInstanceName,
 			paramNodeName
         );
     }

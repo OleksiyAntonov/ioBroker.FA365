@@ -17,9 +17,23 @@ export const initiatorsNames: Array<string> = [
     "postBox"
 ];
 
+
 export const roleRoom: string = "room";
 
-export const roomWohnungEingang: string = "eingangWohnung";
+export const hostWettstettenName: string = "wettstetten";
+export const roomWohnungEingangName: string = "eingangWohnung";
+export const channelTuerName: string = "tuer";
+export const stateOpenedName: string = "offnen";
 
-export const deviceSensorOpen: string = "sensoroffnen";
-export const deviceChannelSensorOpenWohnungEingang: string = `${deviceSensorOpen}.${roomWohnungEingang}`;
+export const hostWettstettenUri: string = hostWettstettenName;
+export const roomWohnungEingangUri: string = `${hostWettstettenUri}.${roomWohnungEingangName}`;
+export const channelWohnungEingangTuerUri: string = `${roomWohnungEingangUri}.${channelTuerName}`;
+export const channelWohnungEingangTuerStateOpenedUri: string = `${roomWohnungEingangUri}.${channelTuerName}`;
+
+export const hauszaehlerName: string = "hauszaehler";
+export const wechselstromName: string = "wechselstrom";
+export const hauptzaehlerName: string = "hauptzaehler";
+
+export const hauszaehlerUri: string = `${hostWettstettenUri}.${hauszaehlerName}`;
+export const hauszaehlerWechselstromUri: string = `${hauszaehlerUri}.${wechselstromName}`;
+export const hauptzaehlerWechselstromUri: string = `${hauszaehlerWechselstromUri}.${hauptzaehlerName}`;

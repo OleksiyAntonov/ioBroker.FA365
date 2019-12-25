@@ -13,10 +13,7 @@ export abstract class SensorOpen implements ISensorOpen {
 	/*
     * Private fields
     */
-    private readonly nodeName: string;
-
-	private readonly adapter: unknown;
-	protected readonly adapterCurrent: Fa365;
+    private readonly sourceUri: string;
 
 	private rootUri: string;
 	private initiatorId: number;
@@ -27,7 +24,7 @@ export abstract class SensorOpen implements ISensorOpen {
 
 	protected state: boolean;
 
-	protected abstract getSensorEventName(): string;
+	protected abstract getSensorSourceEventName(): string;
 
 	protected get irlInitiator(): string {
 		return this.rootUri + driverConsts.objectInitiator;
@@ -67,14 +64,19 @@ export abstract class SensorOpen implements ISensorOpen {
 		return this.timestampPrevious;
 	}
 
+	public get Fqnn(): string {
+		return `${this.sourceUri}.${this.getSensorSourceEventName()}`;
+	}
+
+	public get SourceEventHash(): number {
+		return stringHash(this.Fqnn);
+	}
+
 	constructor(
-		paramAdapter: unknown,
+		paramZwaveInstanceName: string,
 		paramNodeName: string
 	) {
-		this.nodeName = paramNodeName;
-
-		this.adapter = paramAdapter;
-		this.adapterCurrent = (this.adapter) as Fa365;
+		this.sourceUri = `${paramZwaveInstanceName}.${paramNodeName}`;
 
 		this.rootUri = "paramRootUri";
 
@@ -88,8 +90,8 @@ export abstract class SensorOpen implements ISensorOpen {
 	}
 
 	// implementation of ISensorOpen
-	public async Register(): Promise<void> {
-		await this.adapterCurrent.setObjectAsync("sensor.eingangtuer.opened", {
+	public async Register(paramAdapter: Fa365): Promise<void> {
+		await paramAdapter.setObjectAsync("sensor.eingangtuer.opened", {
 			type: "state",
 			common: {
 				name: "opened",
@@ -108,26 +110,4 @@ export abstract class SensorOpen implements ISensorOpen {
 	}
 
 	public abstract SetState(paramState: boolean | number): void;
-
-	public async Subscribe(
-		paramZwaveInstanceName: string
-
-	): Promise<number> {
-		const tempEventName: string = this.GetFqnn(
-			paramZwaveInstanceName,
-			this.nodeName
-		);
-		this.adapterCurrent.subscribeForeignStates(tempEventName);
-		//this.adapterCurrent.log.info(`2`);
-		return stringHash(tempEventName);
-	}
-
-	public GetFqnn(
-		paramInstanceId: string,
-		paramNodeId: string
-	): string {
-		const eventName: string = this.getSensorEventName();
-		return `${paramInstanceId}.${paramNodeId}.${eventName}`;
-	}
-
 }

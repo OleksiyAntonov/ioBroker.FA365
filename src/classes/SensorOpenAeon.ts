@@ -7,7 +7,7 @@ import { SensorOpen } from "./SensorOpen";
 
 export class SensorOpenAeon extends SensorOpen {
 
-	protected getSensorEventName(): string {
+	protected getSensorSourceEventName(): string {
 		return aeonConsts.SensorOpenStateName;
 	}
 

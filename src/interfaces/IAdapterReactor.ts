@@ -1,6 +1,4 @@
 export interface IAdapterReactor {
-	readonly Adapter: unknown;
-
 	Initialize(): Promise<void>;
 	Subscribe(): Promise<void>;
 
