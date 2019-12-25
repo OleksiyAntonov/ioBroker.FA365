@@ -113,11 +113,10 @@ export abstract class SensorOpen implements ISensorOpen {
 		paramZwaveInstanceName: string
 
 	): Promise<number> {
-		/*
-		const eventName: string = this.GetFqnn(
+		const tempEventName: string = this.GetFqnn(
 			paramZwaveInstanceName, // this.adapterCurrent.config.zwaveInstanceName,
 			this.nodeName
-		);*/
+		);
 		// this.adapterCurrent.log.info(`1`);
 		/*
 		await this.adapterCurrent.subscribeForeignStatesAsync(eventName);
