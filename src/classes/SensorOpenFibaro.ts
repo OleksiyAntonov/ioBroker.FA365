@@ -11,7 +11,7 @@ export class SensorOpenFibaro extends SensorOpen {
 		return fibaroConsts.SensorOpenStateName;
 	}
 
-	public SetState(paramState: boolean | number): void {
-		this.state = (paramState === fibaroConsts.SensorOpenStateOpened);
+	public ConvertState(paramState: ioBroker.State): boolean {
+		return (paramState.val === fibaroConsts.SensorOpenStateOpened);
 	}
 }

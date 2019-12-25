@@ -1,6 +1,6 @@
 {
     "name": "iobroker.fa365",
-    "version": "#{GitVersion.FullSemVer}#",
+    "version": "1.1.1",
     "description": "Ole FA365 home automation scripts container",
     "author": {
         "name": "Ole Antonov",

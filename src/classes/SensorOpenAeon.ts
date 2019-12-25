@@ -11,7 +11,7 @@ export class SensorOpenAeon extends SensorOpen {
 		return aeonConsts.SensorOpenStateName;
 	}
 
-	public SetState(paramState: boolean | number): void {
-		this.state = (paramState === aeonConsts.SensorOpenStateOpened);
+	public ConvertState(paramState: ioBroker.State): boolean {
+		return (paramState.val === aeonConsts.SensorOpenStateOpened);
 	}
 }

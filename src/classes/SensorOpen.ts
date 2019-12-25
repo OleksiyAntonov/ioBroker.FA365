@@ -13,55 +13,31 @@ export abstract class SensorOpen implements ISensorOpen {
 	/*
     * Private fields
     */
-    private readonly sourceUri: string;
-
-	private rootUri: string;
-	private initiatorId: number;
-	private stateId: number;
-	private initiator: IInitiator | null;
-	private timestampDiff: number;
-	private timestampPrevious: number;
-
-	protected state: boolean;
+	private readonly sourceUri: string;
+	private readonly rootUri: string;
+	private readonly channelName: string;
+	private state: boolean;
 
 	protected abstract getSensorSourceEventName(): string;
 
-	protected get irlInitiator(): string {
-		return this.rootUri + driverConsts.objectInitiator;
+	protected get stateUri(): string {
+		return `${this.rootUri}.${globalConsts.stateOpenedName}`;
 	}
-	protected get irlInitiatorId(): string {
-		return this.rootUri + driverConsts.objectInitiatorId;
+
+	protected get stateTextUri(): string {
+		return `${this.rootUri}.${globalConsts.stateOpenedTextName}`;
 	}
-	protected get irlState(): string {
-		return this.rootUri + driverConsts.objectState;
-	}
-	protected get irlStateId(): string {
-		return this.rootUri + driverConsts.objectStateId;
-	}
-	protected get irlTimestamp(): string {
-		return this.rootUri + driverConsts.objectTimestamp;
-	}
-	protected get irlLatestChange(): string {
-		return this.rootUri + driverConsts.objectLatestChange;
+
+	public get ChannelName(): string {
+		return this.channelName;
 	}
 
 	public get RootUri(): string {
 		return this.rootUri;
 	}
-	public get InitiatorId(): number {
-		return this.initiatorId;
-	}
-	public get StateId(): number {
-		return this.stateId;
-	}
-	public get Initiator(): IInitiator | null {
-		return this.initiator;
-	}
-	public get TimestampDiff(): number {
-		return this.timestampDiff;
-	}
-	public get TimestampPrevious(): number {
-		return this.timestampPrevious;
+
+	public get StateText(): string {
+		return (this.state) ? globalConsts.sensorStatusOpenedText : globalConsts.sensorStatusClosedText;
 	}
 
 	public get Fqnn(): string {
@@ -73,29 +49,36 @@ export abstract class SensorOpen implements ISensorOpen {
 	}
 
 	constructor(
+		paramRootUri: string,
 		paramZwaveInstanceName: string,
-		paramNodeName: string
+		paramNodeName: string,
+		paramChannelName: string
 	) {
 		this.sourceUri = `${paramZwaveInstanceName}.${paramNodeName}`;
-
-		this.rootUri = "paramRootUri";
-
-		this.initiatorId = globalConsts.numUndefined;
-		this.stateId = globalConsts.numUndefined;
-		this.initiator = null;
-		this.timestampDiff = globalConsts.numZero;
-		this.timestampPrevious = globalConsts.numZero;
+		this.rootUri = `${paramRootUri}`;
+		this.channelName = paramChannelName;
 
 		this.state = false;
 	}
 
 	// implementation of ISensorOpen
 	public async Register(paramAdapter: Fa365): Promise<void> {
-		await paramAdapter.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
+		await paramAdapter.setObjectAsync(this.stateUri, {
 			type: "state",
 			common: {
 				name: globalConsts.stateOpenedName,
-				type: "number",
+				type: "boolean",
+				role: "indicator",
+				read: true,
+				write: false
+			},
+			native: {},
+		});
+		await paramAdapter.setObjectAsync(this.stateTextUri, {
+			type: "state",
+			common: {
+				name: globalConsts.stateOpenedName,
+				type: "string",
 				role: "indicator",
 				read: true,
 				write: false
@@ -104,10 +87,32 @@ export abstract class SensorOpen implements ISensorOpen {
 		});
 	}
 
-	public get State(): boolean {
-		// return this.state;
-		return false;
+	public async Notify(
+		paramAdapter: Fa365
+	): Promise<void> {
+		if (this.state === globalConsts.sensorStatusClosed) {
+			// NotificationEmailObjectSend(processedObject);
+			// if (paramEnableChat === true) {
+			//	NotificationTelegramObjectSend(processedObject);
+		}
 	}
 
-	public abstract SetState(paramState: boolean | number): void;
+	public async Handle(
+		paramAdapter: Fa365,
+		paramState: ioBroker.State
+	): Promise<void> {
+		await this.UpdateState(paramAdapter, paramState);
+		await this.Notify(paramAdapter);
+	}
+
+	public async UpdateState(
+		paramAdapter: Fa365,
+		paramState: ioBroker.State
+	): Promise<void> {
+		this.state = this.ConvertState(paramState);
+		await paramAdapter.setStateAsync(this.stateUri, this.state);
+		await paramAdapter.setStateAsync(this.stateTextUri, this.StateText);
+	}
+
+	public abstract ConvertState(paramState: ioBroker.State): boolean;
 }

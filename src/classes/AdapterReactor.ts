@@ -41,7 +41,12 @@ export class AdapterReactor implements IAdapterReactor {
 
 	private addDevices(): void {
 		this.addDeviceOpenSensor(
-			new SensorsFactory().GetSensorOpenAeon(this.adapterCurrent.config.zwaveInstanceName, "NODE30"));
+			new SensorsFactory().GetSensorOpenAeon(
+				globalConsts.channelWohnungEingangTuerUri,
+				this.adapterCurrent.config.zwaveInstanceName,
+				"NODE30",
+				globalConsts.notificationChannelRoomWohnungEingangTuer
+				));
 	}
 	public async Initialize(): Promise<void> {
 		this.addDevices();
@@ -71,19 +76,6 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
-		/*
-		await this.adapterCurrent.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
-			type: "state",
-			common: {
-				name: globalConsts.stateOpenedName,
-				type: "number",
-				role: "indicator",
-				read: true,
-				write: false
-			},
-			native: {},
-		});
-		*/
 		await this.adapterCurrent.setObjectAsync(globalConsts.hauszaehlerUri, {
 			type: "device",
 			common: {
@@ -134,22 +126,6 @@ export class AdapterReactor implements IAdapterReactor {
 		this.adapterCurrent.log.info(`after subscribe`);
 	}
 
-/*
-		function SubscriberAttachEingangtur(paramEvent) {
-			var sensorObject = SensorOpenObjectRegister(paramEvent);
-
-			sensorObject.InitiatorId = sensorOpenObjectInstanceEingangtur;
-			sensorObject.StateId = SensorConverterStateIdDecoder(getState(sensorEingangturEvent).val, sensorObject.InitiatorId);
-
-			SensorOpenObjectSaveToMemory(sensorObject);
-
-			var cacheEingangturState = $(sensorEingangturEvent);
-			cacheEingangturState.on(function (obj) {
-				HandleChangedState(paramEvent, sensorObject.InitiatorId, obj, true);
-			})
-		}
-*/
-
 	private async subscribeWechselstrom(): Promise<void> {
 		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
 		this.electricityNames.push("zwave.0.NODE24.METER.Electric_-_W_1");
@@ -163,11 +139,6 @@ export class AdapterReactor implements IAdapterReactor {
 			await this.adapterCurrent.subscribeForeignStatesAsync(item);
 			this.electricityHashes.add(stringHash(item));
 		}
-	}
-
-	public async Subscribe(): Promise<void> {
-		await this.subscribeSensorsOpen();
-		await this.subscribeWechselstrom();
 	}
 
 	private async getWechselstrom(paramStateName: string): Promise<number> {
@@ -188,6 +159,11 @@ export class AdapterReactor implements IAdapterReactor {
 		return currentWechselstrom;
 	}
 
+	public async Subscribe(): Promise<void> {
+		await this.subscribeSensorsOpen();
+		await this.subscribeWechselstrom();
+	}
+
 	public async onStateChange(
 		id: string,
 		state: ioBroker.State | null | undefined
@@ -195,14 +171,14 @@ export class AdapterReactor implements IAdapterReactor {
 		const hashState: number = stringHash(id);
 		if (state) {
 			if (this.electricityHashes.has(hashState)) {
-				// this.adapterCurrent.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 				await this.adapterCurrent.setStateAsync(
 					globalConsts.hauptzaehlerWechselstromUri,
 					{ val: await this.getWechselstromTotal(), ack: true }
 				);
 			} else {
 				if (this.sensorsOpens.has(hashState)) {
-					this.adapterCurrent.log.info(`Eingangtur opened`);
+					await (this.sensorsOpens.get(hashState))?.Handle(this.adapterCurrent, state);
+					this.adapterCurrent.log.info(`Eingangtuer opened`);
 				}
 			}
 		}

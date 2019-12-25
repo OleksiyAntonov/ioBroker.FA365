@@ -1,6 +1,5 @@
 import { INotificationIo } from "../interfaces/INotificationIo";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
-import { isNull } from "util";
 
 export class NotificationIo implements INotificationIo {
     private DateTimeUtilsNow(): string {
@@ -20,11 +19,10 @@ export class NotificationIo implements INotificationIo {
         paramTimeStart: Date,
         paramTimeEnd: Date
     ): string {
-        const initiatorName: string = isNull(paramSensorOpen.Initiator) ? "" : paramSensorOpen.Initiator.Name;
         const message: string =
-            initiatorName
+			paramSensorOpen.ChannelName
             + " ist "
-            + paramSensorOpen.State
+            + paramSensorOpen.StateText
             + ": "
             + this.DateTimeUtilsNow()
             + " opened for "
