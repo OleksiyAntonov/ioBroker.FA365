@@ -1,4 +1,6 @@
 ﻿import { IInitiator } from "./IInitiator";
+import { Fa365 } from "../main";
+
 export interface ISensorOpen {
 	readonly Initiator: IInitiator | null;
 	readonly RootUri: string;
@@ -12,4 +14,6 @@ export interface ISensorOpen {
 	readonly SourceEventHash: number;
 
 	SetState(paramState: boolean | number): void;
+
+	Register(paramAdapter: Fa365): Promise<void>;
 }

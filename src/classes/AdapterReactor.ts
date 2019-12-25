@@ -65,6 +65,7 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
+		/*
 		await this.adapterCurrent.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
 			type: "state",
 			common: {
@@ -76,6 +77,7 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
+		*/
 		await this.adapterCurrent.setObjectAsync(globalConsts.hauszaehlerUri, {
 			type: "device",
 			common: {
@@ -101,6 +103,12 @@ export class AdapterReactor implements IAdapterReactor {
 			},
 			native: {},
 		});
+
+		this.adapterCurrent.log.info(`Before register`);
+		for (let item of this.sensorsOpens.values()) {
+			await item.Register(this.adapterCurrent);
+		}
+		this.adapterCurrent.log.info(`after register`);
 	}
 
 	private addDeviceOpenSensor(

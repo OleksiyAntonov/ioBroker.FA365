@@ -23,7 +23,7 @@ export const roleRoom: string = "room";
 export const hostWettstettenName: string = "wettstetten";
 export const roomWohnungEingangName: string = "eingangWohnung";
 export const channelTuerName: string = "tuer";
-export const stateOpenedName: string = "offnen";
+export const stateOpenedName: string = "open";
 
 export const hostWettstettenUri: string = hostWettstettenName;
 export const roomWohnungEingangUri: string = `${hostWettstettenUri}.${roomWohnungEingangName}`;

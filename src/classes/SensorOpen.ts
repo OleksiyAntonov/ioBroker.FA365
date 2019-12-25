@@ -91,11 +91,11 @@ export abstract class SensorOpen implements ISensorOpen {
 
 	// implementation of ISensorOpen
 	public async Register(paramAdapter: Fa365): Promise<void> {
-		await paramAdapter.setObjectAsync("sensor.eingangtuer.opened", {
+		await paramAdapter.setObjectAsync(globalConsts.channelWohnungEingangTuerStateOpenedUri, {
 			type: "state",
 			common: {
-				name: "opened",
-				type: "boolean",
+				name: globalConsts.stateOpenedName,
+				type: "number",
 				role: "indicator",
 				read: true,
 				write: false
