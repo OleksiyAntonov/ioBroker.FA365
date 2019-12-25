@@ -39,7 +39,13 @@ export class AdapterReactor implements IAdapterReactor {
 		this.sensorsOpens = new Map<number, ISensorOpen>();
 	}
 
+	private addDevices(): void {
+		this.addDeviceOpenSensor(
+			new SensorsFactory().GetSensorOpenAeon(this.adapterCurrent.config.zwaveInstanceName, "NODE30"));
+	}
 	public async Initialize(): Promise<void> {
+		this.addDevices();
+
 		/*
 			Creation of home configuration rooms/devices/channels
 		*/
@@ -104,7 +110,7 @@ export class AdapterReactor implements IAdapterReactor {
 			native: {},
 		});
 
-		this.adapterCurrent.log.info(`Before register`);
+		this.adapterCurrent.log.info(`before register`);
 		for (let item of this.sensorsOpens.values()) {
 			await item.Register(this.adapterCurrent);
 		}
@@ -115,14 +121,17 @@ export class AdapterReactor implements IAdapterReactor {
 		paramSensor: ISensorOpen
 	): void {
 		this.sensorsOpens.set(paramSensor.SourceEventHash, paramSensor);
-		this.adapterCurrent.subscribeForeignStates(paramSensor.Fqnn);
-		this.adapterCurrent.log.info(`Event: ${paramSensor.Fqnn}`);
+		// this.adapterCurrent.subscribeForeignStates(paramSensor.Fqnn);
+		// this.adapterCurrent.log.info(`Event: ${paramSensor.Fqnn}`);
 	}
 
 	private async subscribeSensorsOpen(): Promise<void> {
-		this.addDeviceOpenSensor(
-			new SensorsFactory().GetSensorOpenAeon(this.adapterCurrent.config.zwaveInstanceName, "NODE30"));
-		this.adapterCurrent.log.info(`After set`);
+		this.adapterCurrent.log.info(`before subscribe`);
+		for (let item of this.sensorsOpens.values()) {
+			this.adapterCurrent.subscribeForeignStates(item.Fqnn);
+			this.adapterCurrent.log.info(`Event: ${item.Fqnn}`);
+		}
+		this.adapterCurrent.log.info(`after subscribe`);
 	}
 
 /*
