@@ -44,7 +44,7 @@ export class AdapterReactor implements IAdapterReactor {
 			Creation of home configuration rooms/devices/channels
 		*/
 		await this.adapterCurrent.setObjectAsync(globalConsts.hostWettstettenUri, {
-			type: "host",
+			type: "room",
 			common: {
 				name: globalConsts.hostWettstettenName
 			},
