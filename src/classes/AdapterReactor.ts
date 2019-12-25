@@ -104,6 +104,7 @@ export class AdapterReactor implements IAdapterReactor {
 	): void {
 		this.sensorsOpens.set(paramSensor.SourceEventHash, paramSensor);
 		this.adapterCurrent.subscribeForeignStates(paramSensor.Fqnn);
+		this.adapterCurrent.log.info(`Event: ${paramSensor.Fqnn}`);
 	}
 
 	private async subscribeSensorsOpen(): Promise<void> {
