@@ -3,6 +3,7 @@
 import { IInitiator } from "../IInitiator";
 import { INotificationIo } from "../INotificationIo";
 import { INotificationIoChannel } from "../INotificationIoChannel";
+import { INotificationIoNotifier } from "../INotificationIoNotifier";
 
 export interface INotificationsIoFactory {
     GetInitiator(paramCode: globalConsts.initiators): IInitiator;
@@ -18,5 +19,7 @@ export interface INotificationsIoFactory {
     GetNotificationIoChannelTelegram(
         paramTelegramInstanceName: string,
         paramTelegramChatId: string
-    ): INotificationIoChannel;
+	): INotificationIoChannel;
+
+	GetNotificationIoNotifier(): INotificationIoNotifier;
 }

@@ -10,37 +10,43 @@ import { Initiator } from "../classes/Initiator";
 import { NotificationIo } from "../classes/NotificationIo";
 import { NotificationIoChannelMail } from "../classes/NotificationIoChannelMail";
 import { NotificationIoChannelTelegram } from "../classes/NotificationIoChannelTelegram";
+import { INotificationIoNotifier } from "../interfaces/INotificationIoNotifier";
+import { NotificationIoNotifier } from "../classes/NotificationIoNotifier";
 
 export class NotificationsIoFactory implements INotificationsIoFactory {
 
-    GetInitiator(paramCode: globalConsts.initiators): IInitiator {
-        return new Initiator(paramCode);
-    }
+	GetInitiator(paramCode: globalConsts.initiators): IInitiator {
+		return new Initiator(paramCode);
+	}
 
-    GetNotificationIo(): INotificationIo {
-        return new NotificationIo();
-    }
+	GetNotificationIo(): INotificationIo {
+		return new NotificationIo();
+	}
 
-    GetNotificationIoChannelMail(
-        paramInstanceName: string,
-        paramAddressFrom: string,
-        paramAddressTo: string,
-        paramKey: string
-    ): INotificationIoChannel {
-        return new NotificationIoChannelMail(
-            paramInstanceName,
-            paramAddressFrom,
-            paramAddressTo,
-            paramKey
-        );
-    }
-    GetNotificationIoChannelTelegram(
-        paramTelegramInstanceName: string,
-        paramTelegramChatId: string
-    ): INotificationIoChannel {
-        return new NotificationIoChannelTelegram(
-            paramTelegramInstanceName,
-            paramTelegramChatId
-        );
-    }
+	GetNotificationIoChannelMail(
+		paramInstanceName: string,
+		paramAddressFrom: string,
+		paramAddressTo: string,
+		paramKey: string
+	): INotificationIoChannel {
+		return new NotificationIoChannelMail(
+			paramInstanceName,
+			paramAddressFrom,
+			paramAddressTo,
+			paramKey
+		);
+	}
+	GetNotificationIoChannelTelegram(
+		paramTelegramInstanceName: string,
+		paramTelegramChatId: string
+	): INotificationIoChannel {
+		return new NotificationIoChannelTelegram(
+			paramTelegramInstanceName,
+			paramTelegramChatId
+		);
+	}
+
+	GetNotificationIoNotifier(): INotificationIoNotifier {
+		return new NotificationIoNotifier();
+	}
 }

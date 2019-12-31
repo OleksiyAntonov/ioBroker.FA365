@@ -9,6 +9,10 @@ import { Fa365 } from "../main";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
 import { SensorOpen } from "../classes/SensorOpen";
 import { SensorsFactory } from "../factories/SensorsFactory";
+import { NotificationsIoFactory } from "../factories/NotificationsIoFactory";
+import { INotificationsIoFactory } from "../interfaces/factories/INotificationsIoFactory";
+import { INotificationIoNotifier } from "../interfaces/INotificationIoNotifier";
+import { NotificationIoNotifier } from "./NotificationIoNotifier";
 
 export class AdapterReactor implements IAdapterReactor {
 
@@ -39,17 +43,20 @@ export class AdapterReactor implements IAdapterReactor {
 		this.sensorsOpens = new Map<number, ISensorOpen>();
 	}
 
-	private addDevices(): void {
+	private addDevices(
+		paramNotifier: INotificationIoNotifier
+	): void {
 		this.addDeviceOpenSensor(
 			new SensorsFactory().GetSensorOpenAeon(
 				globalConsts.channelWohnungEingangTuerUri,
 				this.adapterCurrent.config.zwaveInstanceName,
 				"NODE30",
-				globalConsts.notificationChannelRoomWohnungEingangTuer
-				));
+				globalConsts.notificationChannelRoomWohnungEingangTuer,
+				paramNotifier
+			));
 	}
 	public async Initialize(): Promise<void> {
-		this.addDevices();
+		this.addDevices(await this.prepareNotification());
 
 		/*
 			Creation of home configuration rooms/devices/channels
@@ -157,6 +164,24 @@ export class AdapterReactor implements IAdapterReactor {
 
 		currentWechselstrom = (currentWechselstrom * 10) / 10;
 		return currentWechselstrom;
+	}
+
+	private async prepareNotification(): Promise<INotificationIoNotifier> {
+		const notificationsIoFactory: INotificationsIoFactory = new NotificationsIoFactory();
+		const notifier: INotificationIoNotifier = notificationsIoFactory.GetNotificationIoNotifier();
+		notifier.Channels.add(
+			notificationsIoFactory.GetNotificationIoChannelTelegram(
+				"", // TODO: add telegram instance
+				""  // TODO: add telegram chat instance
+			));
+		notifier.Channels.add(
+			notificationsIoFactory.GetNotificationIoChannelMail(
+				"", // TODO: add email instance
+				"", // TODO: add address from
+				"", // TODO: add address to
+				""  // TODO: add key
+			));
+		return notifier;
 	}
 
 	public async Subscribe(): Promise<void> {

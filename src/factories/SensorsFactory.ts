@@ -2,19 +2,22 @@
 import { SensorOpenFibaro } from "../classes/SensorOpenFibaro";
 import { ISensorsFactory } from "../interfaces/factories/ISensorsFactory";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
+import { INotificationIoNotifier } from "../interfaces/INotificationIoNotifier";
 
 export class SensorsFactory implements ISensorsFactory {
 	GetSensorOpenAeon(
 		paramRootUri: string,
 		paramZwaveInstanceName: string,
 		paramNodeName: string,
-		paramChannelName: string
+		paramChannelName: string,
+		paramNotifier: INotificationIoNotifier
 	): ISensorOpen {
 		return new SensorOpenAeon(
 			paramRootUri,
 			paramZwaveInstanceName,
 			paramNodeName,
-			paramChannelName
+			paramChannelName,
+			paramNotifier
 		);
 	}
 
@@ -22,13 +25,15 @@ export class SensorsFactory implements ISensorsFactory {
 		paramRootUri: string,
 		paramZwaveInstanceName: string,
 		paramNodeName: string,
-		paramChannelName: string
+		paramChannelName: string,
+		paramNotifier: INotificationIoNotifier
 	): ISensorOpen {
 		return new SensorOpenFibaro(
 			paramRootUri,
 			paramZwaveInstanceName,
 			paramNodeName,
-			paramChannelName
+			paramChannelName,
+			paramNotifier
 		);
 	}
 }

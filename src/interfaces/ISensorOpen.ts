@@ -1,5 +1,4 @@
-﻿import { IInitiator } from "./IInitiator";
-import { Fa365 } from "../main";
+﻿import { Fa365 } from "../main";
 
 export interface ISensorOpen {
 	readonly ChannelName: string;
@@ -16,9 +15,7 @@ export interface ISensorOpen {
 		paramAdapter: Fa365,
 		paramState: ioBroker.State
 	): Promise<void>;
-	Notify(
-		paramAdapter: Fa365
-	): Promise<void>;
+	Notify(): Promise<void>;
 	Register(paramAdapter: Fa365): Promise<void>;
 	UpdateState(
 		paramAdapter: Fa365,

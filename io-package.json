@@ -53,7 +53,9 @@
     },
     "native": {
         "zwaveInstanceName": "zwave.0",
-        "hueInstanceName": "hue-extended.0"
+		"hueInstanceName": "hue-extended.0",
+		"telegramInstanceName": "telegram.0",
+		"emailInstanceName": "email.0"
     },
     "objects": [],
     "instanceObjects": []

@@ -8,6 +8,7 @@ import { IInitiator } from "../interfaces/IInitiator";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
 
 import { Fa365 } from "../main";
+import { INotificationIoNotifier } from "../interfaces/INotificationIoNotifier";
 
 export abstract class SensorOpen implements ISensorOpen {
 	/*
@@ -16,6 +17,7 @@ export abstract class SensorOpen implements ISensorOpen {
 	private readonly sourceUri: string;
 	private readonly rootUri: string;
 	private readonly channelName: string;
+	private readonly notifier: INotificationIoNotifier;
 	private state: boolean;
 
 	protected abstract getSensorSourceEventName(): string;
@@ -52,11 +54,13 @@ export abstract class SensorOpen implements ISensorOpen {
 		paramRootUri: string,
 		paramZwaveInstanceName: string,
 		paramNodeName: string,
-		paramChannelName: string
+		paramChannelName: string,
+		paramNotifier: INotificationIoNotifier
 	) {
 		this.sourceUri = `${paramZwaveInstanceName}.${paramNodeName}`;
 		this.rootUri = `${paramRootUri}`;
 		this.channelName = paramChannelName;
+		this.notifier = paramNotifier;
 
 		this.state = false;
 	}
@@ -87,10 +91,9 @@ export abstract class SensorOpen implements ISensorOpen {
 		});
 	}
 
-	public async Notify(
-		paramAdapter: Fa365
-	): Promise<void> {
+	public async Notify(): Promise<void> {
 		if (this.state === globalConsts.sensorStatusClosed) {
+			// TODO: this.notifier.Notify();
 			// NotificationEmailObjectSend(processedObject);
 			// if (paramEnableChat === true) {
 			//	NotificationTelegramObjectSend(processedObject);
@@ -102,7 +105,7 @@ export abstract class SensorOpen implements ISensorOpen {
 		paramState: ioBroker.State
 	): Promise<void> {
 		await this.UpdateState(paramAdapter, paramState);
-		await this.Notify(paramAdapter);
+		await this.Notify();
 	}
 
 	public async UpdateState(

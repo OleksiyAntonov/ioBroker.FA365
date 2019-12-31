@@ -17,5 +17,13 @@ systemDictionary = {
     "hueInstanceName": {
         "en": "Philips Hue instance name",
         "de": "Name der Philips Hue-Instanz"
+    },
+    "telegramInstanceName": {
+        "en": "Telegram instance name",
+        "de": "Name der Telegram-Instanz"
+    },
+    "emailInstanceName": {
+        "en": "E-Mail instance name",
+        "de": "Name der E-Mail-Instanz"
     }
 };
