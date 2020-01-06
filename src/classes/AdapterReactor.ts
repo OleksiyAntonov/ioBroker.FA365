@@ -105,6 +105,7 @@ export class AdapterReactor implements IAdapterReactor {
 				type: "number",
 				role: "indicator",
 				read: true,
+				write: false,
 				custom: {
 					"sql.0": {
 						"enabled": true,
