@@ -104,7 +104,15 @@ export class AdapterReactor implements IAdapterReactor {
 				name: globalConsts.hauptzaehlerName,
 				type: "number",
 				role: "indicator",
-				read: true
+				read: true,
+				custom: {
+					"sql.0": {
+						"enabled": true,
+						"changesOnly": true,
+						"debounce": "1000",
+						"aliasId": "hauszaehler.wechselstrom.hauptzaeler"
+					}
+				}
 			},
 			native: {},
 		});
