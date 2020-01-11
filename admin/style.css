@@ -7,18 +7,4 @@
 	overflow: initial;
 }
 
-.m select {
-	display: block !important
-}
-
-.box {
-	padding: 10px 5px 15px 5px !important;
-	margin: 0 !important;
-	background-color: #fff; /*#acd8fa*/
-}
-
-.m .row {
-	margin-bottom: 0 !important
-}
-
 /* Add your styles here */
