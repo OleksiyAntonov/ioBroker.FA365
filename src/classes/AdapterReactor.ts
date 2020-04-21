@@ -143,13 +143,29 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	private async subscribeWechselstrom(): Promise<void> {
+		// data center
 		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+
+		// garage
 		this.electricityNames.push("zwave.0.NODE24.METER.Electric_-_W_1");
+
+		// kueche
 		this.electricityNames.push("zwave.0.NODE33.METER.Electric_-_W_1");
+
+		// saugrobo
 		this.electricityNames.push("zwave.0.NODE2.SENSOR_MULTILEVEL.Power_1");
+
+		// fan@kinderzimmer
 		this.electricityNames.push("zwave.0.NODE22.SENSOR_MULTILEVEL.Power_1");
+
+		// keller
 		this.electricityNames.push("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
+
+		// waschmachine@keller
 		this.electricityNames.push("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
+
+		// rechner
+		this.electricityNames.push("zwave.0.NODE50.METER.Electric_-_W_1");
 
 		for (let item of this.electricityNames) {
 			await this.adapterCurrent.subscribeForeignStatesAsync(item);
