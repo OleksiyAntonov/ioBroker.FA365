@@ -1,0 +1,32 @@
+{
+	"$id": "https://oaa.me/fa365-device-base.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"device-base": {
+			"type": "object",
+			"properties": {
+				"node-id": {
+					"$ref": "fa365-node-id.schema.json#/definitions/node-id"
+				},
+				"code": {
+					"$ref": "fa365-device-code.schema.json#/definitions/device-code"
+				},
+				"name": {
+					"type": "string"
+				},
+				"supplier": {
+					"type": "string"
+				},
+				"target": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"node-id",
+				"code",
+				"name",
+				"supplier"
+			]
+		}
+	}
+}

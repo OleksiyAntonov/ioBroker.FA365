@@ -1,0 +1,57 @@
+{
+	"$id": "https://oaa.me/fa365-device-fibaro.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "z-wave supplier fibaro",
+	"definitions": {
+		"fibaro-fgwpe_f": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"FGWPE/F"
+					]
+				},
+				"name": {
+					"enum": [
+						"Wall Plug Gen5"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"FIBARO System"
+					]
+				}
+			}
+		},
+		"fibaro-fgk10x": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"FGK10x"
+					]
+				},
+				"name": {
+					"enum": [
+						"Door Opening Sensor"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"FIBARO System"
+					]
+				}
+			}
+		}
+	}
+}

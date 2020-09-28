@@ -1,0 +1,157 @@
+{
+	"$id": "https://oaa.me/fa365-device-aeotec.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "z-wave supplier aeotec",
+	"definitions": {
+		"aeotec-limited-zwa002": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZWA002"
+					]
+				},
+				"name": {
+					"enum": [
+						"LED Bulb 6 Multi-Color"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"Aeotec Limited"
+					]
+				}
+			}
+		},
+		"aeotec-limited-zwa008": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZWA008"
+					]
+				},
+				"name": {
+					"enum": [
+						"Door Window Sensor 7"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"Aeotec Limited"
+					]
+				}
+			}
+		},
+		"aeon-labs-zw100": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZW100"
+					]
+				},
+				"name": {
+					"enum": [
+						"MultiSensor 6"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"AEON Labs"
+					]
+				}
+			}
+		},
+		"aeon-labs-zw112": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZW112"
+					]
+				},
+				"name": {
+					"enum": [
+						"Door Window Sensor 6"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"AEON Labs"
+					]
+				}
+			}
+		},
+		"aeon-labs-zw117": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZW117"
+					]
+				},
+				"name": {
+					"enum": [
+						"Range Extender 6"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"AEON Labs"
+					]
+				}
+			}
+		},		"aeon-labs-zw130": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZW130"
+					]
+				},
+				"name": {
+					"enum": [
+						"WallMote Quad"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"AEON Labs"
+					]
+				}
+			}
+		}
+
+	}
+}

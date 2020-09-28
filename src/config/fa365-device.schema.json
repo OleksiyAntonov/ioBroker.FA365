@@ -1,0 +1,53 @@
+{
+	"$id": "https://oaa.me/fa365-device.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"device": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeotec-limited-zwa002"
+				},
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeotec-limited-zwa008"
+				},
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeon-labs-zw100"
+				},
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeon-labs-zw112"
+				},
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeon-labs-zw117"
+				},
+				{
+					"$ref": "./supplier/fa365-device-aeotec.schema.json#/definitions/aeon-labs-zw130"
+				},
+				{
+					"$ref": "./supplier/fa365-device-devolo.schema.json#/definitions/devolo-mt2652"
+				},
+				{
+					"$ref": "./supplier/fa365-device-devolo.schema.json#/definitions/devolo-mt02792"
+				},
+				{
+					"$ref": "./supplier/fa365-device-fibaro.schema.json#/definitions/fibaro-fgk10x"
+				},
+				{
+					"$ref": "./supplier/fa365-device-fibaro.schema.json#/definitions/fibaro-fgwpe_f"
+				},
+				{
+					"$ref": "./supplier/fa365-device-popp.schema.json#/definitions/popp-700397"
+				},
+				{
+					"$ref": "./supplier/fa365-device-mcohome.schema.json#/definitions/mcohome-mh9-co2-wd"
+				},
+				{
+					"$ref": "./supplier/fa365-device-mcohome.schema.json#/definitions/mcohome-a8-9"
+				},
+				{
+					"$ref": "./supplier/fa365-device-quibino.schema.json#/definitions/quibino-zmnhadx"
+				}
+			]
+		}
+	}
+}

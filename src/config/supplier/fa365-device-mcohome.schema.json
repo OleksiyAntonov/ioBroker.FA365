@@ -1,0 +1,57 @@
+{
+	"$id": "https://oaa.me/fa365-device-mcohome.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "z-wave supplier mcohome",
+	"definitions": {
+		"mcohome-mh9-co2-wd": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"MH9-CO2-WD"
+					]
+				},
+				"name": {
+					"enum": [
+						"Multilevel Sensor"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"McoHome Technology Co Ltd"
+					]
+				}
+			}
+		},
+		"mcohome-a8-9": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"A8-9"
+					]
+				},
+				"name": {
+					"enum": [
+						"Multi-sensor"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"McoHome Technology Co Ltd"
+					]
+				}
+			}
+		}
+	}
+}

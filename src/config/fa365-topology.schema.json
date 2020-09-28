@@ -1,0 +1,45 @@
+{
+	"$id": "https://oaa.me/fa365-topology.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "z-wave network configuration",
+	"type": "object",
+	"properties": {
+		"rooms": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/room"
+			}
+		}
+	},
+	"definitions": {
+		"room": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string",
+					"enum": [
+						"arbeitszimmer",
+						"flur",
+						"garage",
+						"gartenlager",
+						"hobbyraum",
+						"kuechezimmer",
+						"keller",
+						"radkeller",
+						"kinderzimmer",
+						"pobox",
+						"schlafzimmer",
+						"waschkeller",
+						"wohnzimmer"
+					]
+				},
+				"devices": {
+					"type": "array",
+					"items": {
+						"$ref": "./fa365-device.schema.json#/definitions/device"
+					}
+				}
+			}
+		}
+	}
+}

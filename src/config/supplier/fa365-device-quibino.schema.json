@@ -1,0 +1,32 @@
+{
+	"$id": "https://oaa.me/fa365-device-quibino.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "z-wave supplier quibino",
+	"definitions": {
+		"quibino-zmnhadx": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZMNHADx"
+					]
+				},
+				"name": {
+					"enum": [
+						"Flush 1 Relay"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"Qubino (Goap)"
+					]
+				}
+			}
+		}
+	}
+}

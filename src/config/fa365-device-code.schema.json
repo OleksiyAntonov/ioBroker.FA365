@@ -1,0 +1,25 @@
+{
+	"$id": "https://oaa.me/fa365-device-code.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"device-code": {
+			"type": "string",
+			"enum": [
+				"700397",
+				"A8-9",
+				"FGK10x",
+				"FGWPE/F",
+				"MH9-CO2-WD",
+				"MT2652",
+				"MT02792",
+				"ZMNHADx",
+				"ZW100",
+				"ZW112",
+				"ZW117",
+				"ZW130",
+				"ZWA002",
+				"ZWA008"
+			]
+		}
+	}
+}
