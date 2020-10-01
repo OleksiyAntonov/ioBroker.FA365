@@ -47,7 +47,17 @@
 				{
 					"$ref": "./supplier/fa365-device-quibino.schema.json#/definitions/quibino-zmnhadx"
 				}
-			]
+			],
+			"properties": {
+				"security": {
+					"type":"string",
+					"enum":[
+						"none",
+						"s0",
+						"s2"
+					]
+				}
+			}
 		}
 	}
 }

@@ -65,7 +65,8 @@
 					"code": "ZW117",
 					"name": "Range Extender 6",
 					"node-id": 61,
-					"supplier": "AEON Labs"
+					"supplier": "AEON Labs",
+					"security": "none"
 				}
 			]
 		},
@@ -92,16 +93,18 @@
 				{
 					"code": "FGWPE/F",
 					"name": "Wall Plug Gen5",
-					"node-id": 5,
+					"node-id": 65,
 					"supplier": "FIBARO System",
-					"target": "zwift"
+					"target": "zwift",
+					"security": "none"
 				},
 				{
 					"code": "FGWPE/F",
 					"name": "Wall Plug Gen5",
-					"node-id": 2,
+					"node-id": 66,
 					"supplier": "FIBARO System",
-					"target": "Saugroboter"
+					"target": "Saugroboter",
+					"security": "none"
 				},
 				{
 					"code": "FGWPE/F",
@@ -118,8 +121,9 @@
 				{
 					"code": "MH9-CO2-WD",
 					"name": "Multilevel Sensor",
-					"node-id": 25,
-					"supplier": "McoHome Technology Co Ltd"
+					"node-id": 67,
+					"supplier": "McoHome Technology Co Ltd",
+					"security": "none"
 				},
 				{
 					"code": "ZMNHADx",
@@ -148,9 +152,10 @@
 				{
 					"code": "FGWPE/F",
 					"name": "Wall Plug Gen5",
-					"node-id": 22,
+					"node-id": 64,
 					"supplier": "FIBARO System",
-					"target": "heizung"
+					"target": "heizung",
+					"security": "none"
 				},
 				{
 					"code": "MT2652",
