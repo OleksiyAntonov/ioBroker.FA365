@@ -7,14 +7,16 @@
 				{
 					"code": "ZWA002",
 					"name": "LED Bulb 6 Multi-Color",
-					"node-id": 59,
-					"supplier": "Aeotec Limited"
+					"node-id": 73,
+					"supplier": "Aeotec Limited",
+					"security": "none"
 				},
 				{
 					"code": "ZW100",
 					"name": "MultiSensor 6",
-					"node-id": 60,
-					"supplier": "AEON Labs"
+					"node-id": 72,
+					"supplier": "AEON Labs",
+					"security": "none"
 				}
 			]
 		},
@@ -24,20 +26,24 @@
 				{
 					"code": "ZWA002",
 					"name": "LED Bulb 6 Multi-Color",
-					"node-id": 31,
-					"supplier": "Aeotec Limited"
+					"node-id": 71,
+					"supplier": "Aeotec Limited",
+					"security": "none"
 				},
 				{
 					"code": "ZW100",
 					"name": "MultiSensor 6",
-					"node-id": 36,
-					"supplier": "AEON Labs"
+					"node-id": 70,
+					"supplier": "AEON Labs",
+					"security": "none"
 				},
 				{
 					"code": "700397",
 					"name": "Wall Plug Switch Outdoor Schuko (IP44)",
-					"node-id": 24,
-					"supplier": "Popp & Co"
+					"node-id": 69,
+					"supplier": "Popp & Co",
+					"security": "none",
+					"target": "steckdose"
 				}
 			]
 		},
@@ -47,14 +53,16 @@
 				{
 					"code": "ZW100",
 					"name": "MultiSensor 6",
-					"node-id": 52,
-					"supplier": "AEON Labs"
+					"node-id": 68,
+					"supplier": "AEON Labs",
+					"security": "none"
 				},
 				{
 					"code": "FGWPE/F",
 					"name": "Wall Plug Gen5",
-					"node-id": 40,
-					"supplier": "FIBARO System"
+					"node-id": 74,
+					"supplier": "FIBARO System",
+					"security": "none"
 				}
 			]
 		},
