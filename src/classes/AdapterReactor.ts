@@ -143,31 +143,34 @@ export class AdapterReactor implements IAdapterReactor {
 	}
 
 	private async subscribeWechselstrom(): Promise<void> {
-		// datacenter
-		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
-
 		// garage
-		this.electricityNames.push("zwave.0.NODE24.METER.Electric_-_W_1");
+		this.electricityNames.push("zwave.0.NODE69.METER.Electric_-_W_1");
+
+		// hobbyraum
+		this.electricityNames.push("zwave.0.NODE74.SENSOR_MULTILEVEL.Power_1");
 
 		// kueche
 		this.electricityNames.push("zwave.0.NODE33.METER.Electric_-_W_1");
 
+		// datacenter
+		this.electricityNames.push("zwave.0.NODE23.SENSOR_MULTILEVEL.Power_1");
+
 		// saugroboter
 		this.electricityNames.push("zwave.0.NODE66.SENSOR_MULTILEVEL.Power_1");
+
+		// zwift
+		this.electricityNames.push("zwave.0.NODE76.METER.Instance_1:_Electric_-_W_1");
+
+		// rechner@arbeitszimmer
+		this.electricityNames.push("zwave.0.NODE50.METER.Electric_-_W_1");
 
 		// heizung@kinderzimmer
 		this.electricityNames.push("zwave.0.NODE64.SENSOR_MULTILEVEL.Power_1");
 
-		// keller
-		this.electricityNames.push("zwave.0.NODE40.SENSOR_MULTILEVEL.Power_1");
-
 		// waschmachine@keller
 		this.electricityNames.push("zwave.0.NODE8.SENSOR_MULTILEVEL.Power_1");
 
-		// rechner
-		this.electricityNames.push("zwave.0.NODE50.METER.Electric_-_W_1");
-
-		// zwift@wohnzimmer
+		// comm@flur
 		this.electricityNames.push("zwave.0.NODE65.SENSOR_MULTILEVEL.Power_1");
 
 		for (let item of this.electricityNames) {
