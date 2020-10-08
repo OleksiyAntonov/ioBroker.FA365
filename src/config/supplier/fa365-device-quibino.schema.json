@@ -27,6 +27,31 @@
 					]
 				}
 			}
+		},
+		"quibino-zmnhbdx": {
+			"allOf": [
+				{
+					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
+				}
+			],
+			"type": "object",
+			"properties": {
+				"code": {
+					"enum": [
+						"ZMNHBDx"
+					]
+				},
+				"name": {
+					"enum": [
+						"Flush 2 Relay"
+					]
+				},
+				"supplier": {
+					"enum": [
+						"Qubino (Goap)"
+					]
+				}
+			}
 		}
 	}
 }
