@@ -101,14 +101,6 @@
 				{
 					"code": "FGWPE/F",
 					"name": "Wall Plug Gen5",
-					"node-id": 65,
-					"supplier": "FIBARO System",
-					"target": "zwift",
-					"security": "none"
-				},
-				{
-					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
 					"node-id": 66,
 					"supplier": "FIBARO System",
 					"target": "Saugroboter",
@@ -120,6 +112,14 @@
 					"node-id": 23,
 					"supplier": "FIBARO System",
 					"target": "datacenter"
+				},
+				{
+					"code": "ZMNHBDx",
+					"name": "Flush 2 Relay",
+					"node-id": 76,
+					"security": "none",
+					"supplier": "Qubino (Goap)",
+					"target": "zwift"
 				}
 			]
 		},
@@ -227,6 +227,14 @@
 					"node-id": 30,
 					"supplier": "AEON Labs",
 					"target": "eingangtuer"
+				},
+				{
+					"code": "FGWPE/F",
+					"name": "Wall Plug Gen5",
+					"node-id": 65,
+					"supplier": "FIBARO System",
+					"target": "comm",
+					"security": "none"
 				}
 			]
 		},

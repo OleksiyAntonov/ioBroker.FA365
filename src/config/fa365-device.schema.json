@@ -46,6 +46,9 @@
 				},
 				{
 					"$ref": "./supplier/fa365-device-quibino.schema.json#/definitions/quibino-zmnhadx"
+				},
+				{
+					"$ref": "./supplier/fa365-device-quibino.schema.json#/definitions/quibino-zmnhbdx"
 				}
 			],
 			"properties": {
