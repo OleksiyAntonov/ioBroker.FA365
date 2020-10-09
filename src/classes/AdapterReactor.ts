@@ -159,7 +159,10 @@ export class AdapterReactor implements IAdapterReactor {
 		this.electricityNames.push("zwave.0.NODE66.SENSOR_MULTILEVEL.Power_1");
 
 		// zwift
-		this.electricityNames.push("zwave.0.NODE76.METER.Instance_1:_Electric_-_W_1");
+		this.electricityNames.push("zwave.0.NODE76.METER.Instance_1:_Electric_-_W_3");
+
+		// zwift/charger
+		this.electricityNames.push("zwave.0.NODE76.METER.Instance_1:_Electric_-_W_2");
 
 		// rechner@arbeitszimmer
 		this.electricityNames.push("zwave.0.NODE50.METER.Electric_-_W_1");
