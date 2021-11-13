@@ -15,9 +15,15 @@
 					"type": "string"
 				},
 				"supplier": {
-					"type": "string"
+					"$ref": "fa365-supplier.schema.json#/definitions/supplier"
 				},
-				"target": {
+				"node-id-old": {
+					"$ref": "fa365-node-id.schema.json#/definitions/node-id-old"
+				},
+				"role": {
+					"$ref": "fa365-role.schema.json#/definitions/role"
+				},
+				"comment": {
 					"type": "string"
 				}
 			},
@@ -25,7 +31,8 @@
 				"node-id",
 				"code",
 				"name",
-				"supplier"
+				"supplier",
+				"role"
 			]
 		}
 	}
