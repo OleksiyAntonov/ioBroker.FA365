@@ -1,0 +1,18 @@
+{
+	"$id": "https://oaa.me/fa365-supplier.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"supplier": {
+			"type": "string",
+			"enum": [
+				"AEON Labs",
+				"Aeotec Limited",
+				"Devolo home Control",
+				"FIBARO System",
+				"McoHome Technology Co Ltd",
+				"Popp & Co",
+				"Qubino (Goap)"
+			]
+		}
+	}
+}
