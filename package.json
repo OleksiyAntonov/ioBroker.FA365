@@ -1,91 +1,92 @@
 {
-    "name": "iobroker.fa365",
-    "version": "#{GitVersion.FullSemVer}#",
-    "description": "Ole FA365 home automation scripts container",
-    "author": {
-        "name": "Ole Antonov",
-        "email": "oleksiy.antonov@live.com"
-    },
-    "homepage": "https://github.com/OleksiyAntonov/ioBroker.FA365",
-    "license": "MIT",
-    "keywords": [
-        "ioBroker",
-        "FA365",
-        "Smart Home",
-        "home automation"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/OleksiyAntonov/ioBroker.FA365"
-    },
-    "dependencies": {
-        "@iobroker/adapter-core": "^1.0.3",
-        "string-hash": "^1.1.3"
-    },
-    "devDependencies": {
-        "@iobroker/testing": "^1.3.1",
-        "@types/chai": "^4.2.7",
-        "@types/chai-as-promised": "^7.1.2",
-        "@types/gulp": "^4.0.6",
-        "@types/mocha": "^5.2.7",
-        "@types/node": "^10.17.13",
-        "@types/proxyquire": "^1.3.28",
-        "@types/sinon": "^7.5.1",
-        "@types/sinon-chai": "^3.2.3",
-        "@typescript-eslint/eslint-plugin": "^2.14.0",
-        "@typescript-eslint/parser": "^2.14.0",
-        "axios": "^0.19.0",
-        "chai": "^4.2.0",
-        "chai-as-promised": "^7.1.1",
-        "eslint": "^6.8.0",
-        "gulp": "^4.0.2",
-        "mocha": "^6.2.2",
-        "nyc": "^15.0.0",
-        "proxyquire": "^2.1.3",
-        "rimraf": "^3.0.0",
-        "sinon": "^7.5.0",
-        "sinon-chai": "^3.4.0",
-        "source-map-support": "^0.5.16",
-        "ts-node": "^8.5.4",
-        "typescript": "^3.7.4"
-    },
-    "main": "build/main.js",
-    "scripts": {
-        "prebuild": "rimraf ./build",
-        "build:ts": "tsc -p tsconfig.build.json",
-        "build": "npm run build:ts",
-        "watch:ts": "tsc -p tsconfig.build.json --watch",
-        "watch": "npm run watch:ts",
-        "test:ts": "mocha --opts test/mocha.custom.opts",
-        "test:package": "mocha test/package --exit",
-        "test:unit": "mocha test/unit --exit",
-        "test:integration": "mocha test/integration --exit",
-        "test": "npm run test:ts && npm run test:package",
-        "coverage": "nyc npm run test:ts",
-        "lint": "eslint --ext .ts src"
-    },
-    "nyc": {
-        "include": [
-            "src/**/*.ts"
-        ],
-        "exclude": [
-            "src/**/*.test.ts"
-        ],
-        "extension": [
-            ".ts"
-        ],
-        "require": [
-            "ts-node/register"
-        ],
-        "reporter": [
-            "text-summary",
-            "html"
-        ],
-        "sourceMap": true,
-        "instrument": true
-    },
-    "bugs": {
-        "url": "https://github.com/antonov/ioBroker.FA365/issues"
-    },
-    "readmeFilename": "README.md"
+	"name": "iobroker.fa365",
+	"version": "#{GitVersion.FullSemVer}#",
+	"description": "Ole FA365 home automation scripts container",
+	"author": {
+		"name": "Ole Antonov",
+		"email": "oleksiy.antonov@live.com"
+	},
+	"homepage": "https://github.com/OleksiyAntonov/ioBroker.FA365",
+	"license": "MIT",
+	"keywords": [
+		"ioBroker",
+		"FA365",
+		"Smart Home",
+		"home automation"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/OleksiyAntonov/ioBroker.FA365"
+	},
+	"dependencies": {
+		"@iobroker/adapter-core": "^2.4.0",
+		"string-hash": "^1.1.3"
+	},
+	"devDependencies": {
+		"@iobroker/testing": "^2.4.4",
+		"@types/chai": "^4.2.7",
+		"@types/chai-as-promised": "^7.1.2",
+		"@types/gulp": "^4.0.6",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "^15.0.3",
+		"@types/proxyquire": "^1.3.28",
+		"@types/sinon": "^10.0.0",
+		"@types/sinon-chai": "^3.2.3",
+		"@typescript-eslint/eslint-plugin": "^4.23.0",
+		"@typescript-eslint/parser": "^4.23.0",
+		"axios": ">=0.21.1",
+		"chai": "^4.2.0",
+		"chai-as-promised": "^7.1.1",
+		"eslint": "^7.26.0",
+		"esm": "^3.2.25",
+		"gulp": "^4.0.2",
+		"mocha": "^8.4.0",
+		"nyc": "^15.0.0",
+		"proxyquire": "^2.1.3",
+		"rimraf": "^3.0.0",
+		"sinon": "^10.0.0",
+		"sinon-chai": "^3.4.0",
+		"source-map-support": "^0.5.16",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.4"
+	},
+	"main": "build/main.js",
+	"scripts": {
+		"prebuild": "rimraf ./build",
+		"build:ts": "tsc -p tsconfig.build.json",
+		"build": "npm run build:ts",
+		"watch:ts": "tsc -p tsconfig.build.json --watch",
+		"watch": "npm run watch:ts",
+		"test:ts": "mocha --opts test/mocha.custom.opts",
+		"test:package": "mocha test/package --exit",
+		"test:unit": "mocha test/unit --exit",
+		"test:integration": "mocha test/integration --exit",
+		"test": "npm run test:ts && npm run test:package",
+		"coverage": "nyc npm run test:ts",
+		"lint": "eslint --ext .ts src"
+	},
+	"nyc": {
+		"include": [
+			"src/**/*.ts"
+		],
+		"exclude": [
+			"src/**/*.test.ts"
+		],
+		"extension": [
+			".ts"
+		],
+		"require": [
+			"ts-node/register"
+		],
+		"reporter": [
+			"text-summary",
+			"html"
+		],
+		"sourceMap": true,
+		"instrument": true
+	},
+	"bugs": {
+		"url": "https://github.com/antonov/ioBroker.FA365/issues"
+	},
+	"readmeFilename": "README.md"
 }
