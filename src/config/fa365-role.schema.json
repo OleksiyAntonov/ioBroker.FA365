@@ -1,0 +1,28 @@
+{
+	"$id": "https://oaa.me/fa365-role.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"role": {
+			"type": "string",
+			"enum": [
+				"comm",
+				"control",
+				"datacenter",
+				"eingangtuer",
+				"extender",
+				"heizung",
+				"hinterhoftuer",
+				"fenster",
+				"klima",
+				"licht",
+				"multisensor",
+				"postbox",
+				"powercord",
+				"saugroboter",
+				"steckdose",
+				"tuer",
+				"zwift"
+			]
+		}
+	}
+}
