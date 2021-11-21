@@ -1,18 +1,18 @@
+import stringHash = require("string-hash");
+
 import * as globalConsts from "../consts/GlobalConsts";
-
-// tslint:disable-next-line: typedef
-const stringHash = require("string-hash");
-
 import { IAdapterReactor } from "../interfaces/IAdapterReactor";
 
 import { Fa365 } from "../main";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
-import { SensorOpen } from "../classes/SensorOpen";
+// TODO: temporary disabled
+// import { SensorOpen } from "../classes/SensorOpen";
 import { SensorsFactory } from "../factories/SensorsFactory";
 import { NotificationsIoFactory } from "../factories/NotificationsIoFactory";
 import { INotificationsIoFactory } from "../interfaces/factories/INotificationsIoFactory";
 import { INotificationIoNotifier } from "../interfaces/INotificationIoNotifier";
-import { NotificationIoNotifier } from "./NotificationIoNotifier";
+// TODO: temporary disabled
+// import { NotificationIoNotifier } from "./NotificationIoNotifier";
 
 export class AdapterReactor implements IAdapterReactor {
 
@@ -119,7 +119,7 @@ export class AdapterReactor implements IAdapterReactor {
 		});
 
 		this.adapterCurrent.log.info(`before register`);
-		for (let item of this.sensorsOpens.values()) {
+		for (const item of this.sensorsOpens.values()) {
 			await item.Register(this.adapterCurrent);
 		}
 		this.adapterCurrent.log.info(`after register`);
@@ -135,7 +135,7 @@ export class AdapterReactor implements IAdapterReactor {
 
 	private async subscribeSensorsOpen(): Promise<void> {
 		this.adapterCurrent.log.info(`before subscribe`);
-		for (let item of this.sensorsOpens.values()) {
+		for (const item of this.sensorsOpens.values()) {
 			this.adapterCurrent.subscribeForeignStates(item.Fqnn);
 			this.adapterCurrent.log.info(`Event: ${item.Fqnn}`);
 		}
@@ -176,23 +176,34 @@ export class AdapterReactor implements IAdapterReactor {
 		// comm@flur
 		this.electricityNames.push("zwave.0.NODE65.SENSOR_MULTILEVEL.Power_1");
 
-		for (let item of this.electricityNames) {
+		for (const item of this.electricityNames) {
 			await this.adapterCurrent.subscribeForeignStatesAsync(item);
 			this.electricityHashes.add(stringHash(item));
 		}
 	}
 
+	// TODO: add unit test
 	private async getWechselstrom(paramStateName: string): Promise<number> {
-		// tslint:disable-next-line: typedef
-		const stateWechselstrom =
+		const stateWechselstromCheck =
 			await this.adapterCurrent.getForeignStateAsync(paramStateName);
-		return stateWechselstrom ? stateWechselstrom.val : 0;
+		let stateWechselstrom = 0; // type <number>, no exclusive declaration required
+		if (!(stateWechselstromCheck == null)) {
+			if (!(stateWechselstromCheck.val == null)) {
+				// TODO: required check if source value is real integer value
+				stateWechselstrom = parseFloat(stateWechselstromCheck.val.toString())
+			}
+		}
+		else {
+
+		}
+
+		return stateWechselstrom;
 	}
 
 	private async getWechselstromTotal(): Promise<number> {
-		let currentWechselstrom: number = 0;
+		let currentWechselstrom = 0; // type <number>, no exclusive declaration required
 
-		for (let item of this.electricityNames) {
+		for (const item of this.electricityNames) {
 			currentWechselstrom += await this.getWechselstrom(item);
 		}
 
