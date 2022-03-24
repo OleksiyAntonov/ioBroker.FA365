@@ -1,10 +1,12 @@
 import { Adapter } from "@iobroker/adapter-core";
+import { AdapterOptions } from "@iobroker/adapter-core";
 
 import { IAdapterReactor } from "./interfaces/IAdapterReactor";
 import { AdapterReactorFactory } from "./factories/AdapterReactorFactory";
 
 declare global {
 
+	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace ioBroker {
 
 		// tslint:disable-next-line: interface-name
@@ -22,7 +24,7 @@ export class Fa365 extends Adapter {
 
 	adapterReactor: IAdapterReactor;
 
-	public constructor(options: Partial<ioBroker.AdapterOptions> = {}) {
+	public constructor(options: Partial<AdapterOptions> = {}) {
 		super({
 			...options,
 			name: "fa365",
@@ -99,7 +101,7 @@ export class Fa365 extends Adapter {
 
 if (module.parent) {
 	// export the constructor in compact mode
-	module.exports = (options: Partial<ioBroker.AdapterOptions> | undefined) => new Fa365(options);
+	module.exports = (options: Partial<AdapterOptions> | undefined) => new Fa365(options);
 } else {
 	// otherwise start the instance directly
 	(() => new Fa365())();
