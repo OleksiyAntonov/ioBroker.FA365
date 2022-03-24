@@ -11,14 +11,19 @@
 			"skipFiles": [
 				"<node_internals>/**"
 			],
-			"program": "${workspaceFolder}/node_modules/mocha/bin/mocha -r esm",
-			"outFiles": [
-				"${workspaceFolder}/**/*.js"
-			],
+			"program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
 			"args": [
+				"-r",
+				"ts-node/register",
+				"--timeout",
+				"999999",
+				"--colors",
 				"--opts",
 				"${workspaceFolder}/mocha.opts",
 				"${workspaceRoot}/src/test/**/*.ts"
+			],
+			"outFiles": [
+				"${workspaceFolder}/**/*.js"
 			],
 			"cwd": "${workspaceRoot}",
 			"internalConsoleOptions": "openOnSessionStart"
