@@ -1,5 +1,7 @@
 ![Logo](admin/template.png)
 # ioBroker.FA365
+#		"typescript.tsdk": "/opt/homebrew/bin/tsserver",
+
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.fa365)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.fa365)
@@ -83,6 +85,9 @@ For later updates, the above procedure is not necessary. Just do the following:
 1. Execute `iobroker upload template` on the ioBroker host
 
 ## Changelog
+### #{GitVersion.FullSemVer}# (2021-11-23)
+* initial release
+
 
 ### 0.0.1
 * (Author) initial release
