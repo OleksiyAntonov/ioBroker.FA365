@@ -2,24 +2,24 @@ import { INotificationIo } from "../interfaces/INotificationIo";
 import { ISensorOpen } from "../interfaces/ISensorOpen";
 
 export class NotificationIo implements INotificationIo {
-    private DateTimeUtilsNow(): string {
-        const currentDate: Date = new Date(Date.now());
-        return currentDate.toString();
-    }
+	private DateTimeUtilsNow(): string {
+		const currentDate: Date = new Date(Date.now());
+		return currentDate.toString();
+	}
 
-    private TimeStampDiff(
-        paramTimeStart: Date,
-        paramTimeEnd: Date
-    ): string {
-        return "";
-    }
+	private TimeStampDiff(
+		paramTimeStart: Date,
+		paramTimeEnd: Date
+	): string {
+		return "";
+	}
 
-    public ComposeBody(
-        paramSensorOpen: ISensorOpen,
-        paramTimeStart: Date,
-        paramTimeEnd: Date
-    ): string {
-        const message: string =
+	public ComposeBody(
+		paramSensorOpen: ISensorOpen,
+		paramTimeStart: Date,
+		paramTimeEnd: Date
+	): string {
+		const message: string =
 			paramSensorOpen.ChannelName
             + " ist "
             + paramSensorOpen.StateText
@@ -29,15 +29,15 @@ export class NotificationIo implements INotificationIo {
             + this.TimeStampDiff(paramTimeStart, paramTimeEnd)
             + " seconds";
 
-        return message;
-    }
+		return message;
+	}
 
-    public ComposeHeader(
-        paramSensorOpen: ISensorOpen,
-        paramTimeStart: Date,
-        paramTimeEnd: Date
-    ): string {
-        //
-        return "";
-    }
+	public ComposeHeader(
+		paramSensorOpen: ISensorOpen,
+		paramTimeStart: Date,
+		paramTimeEnd: Date
+	): string {
+		//
+		return "";
+	}
 }
