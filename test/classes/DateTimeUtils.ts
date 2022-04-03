@@ -7,11 +7,11 @@ import assert = require("assert");
 
 describe("DateTimeUtils", () => {
 
-    it("TimeStampDiffToString", () => {
-        const test: IDateTimeUtils = (new UtilsFactory()).GetDateTimeUtils();
+	it("TimeStampDiffToString", () => {
+		const test: IDateTimeUtils = (new UtilsFactory()).GetDateTimeUtils();
 
-        const result: string = test.TimeStampDiffToString(5531166778, 5541166778);
+		const result: string = test.TimeStampDiffToString(5531166778, 5541166778);
 
-        assert.equal(result, "2:46:40");
-    });
+		assert.strictEqual(result, "2:46:40");
+	});
 });
