@@ -5,43 +5,25 @@ import * as globalConsts from "../../src/consts/GlobalConsts";
 import { NotificationsIoFactory } from "../../src/factories/NotificationsIoFactory";
 
 describe("Initiator", () => {
-	it("ctx", () => {
-		expect(
-			(new NotificationsIoFactory()).GetInitiator(
-				globalConsts.initiators.postBox
-			).Name
-		).to.equal("postBox");
+	it("ctx-postbox", () => {
+		const initiatorTest = (new NotificationsIoFactory()).GetInitiator(
+			globalConsts.initiators.postBox
+		);
+		expect(initiatorTest.Name).to.equal("postBox");
+		expect(initiatorTest.Id).to.equal(globalConsts.initiators.postBox);
 	});
-
-	it("Code [+]", () => {
-		expect(
-			(new NotificationsIoFactory()).GetInitiator(
-				globalConsts.initiators.balkonTuer
-			).Id
-		).to.equal(globalConsts.initiators.balkonTuer);
+	it("ctx-balkontuer", () => {
+		const initiatorTest = (new NotificationsIoFactory()).GetInitiator(
+			globalConsts.initiators.balkonTuer
+		);
+		expect(initiatorTest.Name).to.equal("Balkontuer");
+		expect(initiatorTest.Id).to.equal(globalConsts.initiators.balkonTuer);
 	});
-
-	it("Code [-]", () => {
-		expect(
-			(new NotificationsIoFactory()).GetInitiator(
-				globalConsts.initiators.balkonTuer
-			).Id
-		).to.not.equal(globalConsts.initiators.eingangTuer);
-	});
-
-	it("Id [+]", () => {
-		expect(
-			(new NotificationsIoFactory()).GetInitiator(
-				globalConsts.initiators.eingangTuer
-			).Id
-		).to.equal(1);
-	});
-
-	it("Id [-]", () => {
-		expect(
-			(new NotificationsIoFactory()).GetInitiator(
-				globalConsts.initiators.eingangTuer
-			).Id
-		).to.not.equal(2);
+	it("ctx-eingangtuer", () => {
+		const initiatorTest = (new NotificationsIoFactory()).GetInitiator(
+			globalConsts.initiators.eingangTuer
+		);
+		expect(initiatorTest.Name).to.equal("Eingangtuer");
+		expect(initiatorTest.Id).to.equal(globalConsts.initiators.eingangTuer);
 	});
 });
