@@ -5,18 +5,22 @@
 			"code": "gartenlager",
 			"devices": [
 				{
-					"code": "ZWA002",
-					"name": "LED Bulb 6 Multi-Color",
-					"node-id": 73,
 					"supplier": "Aeotec Limited",
-					"security": "none"
+					"code": "ZWA002",
+					"node-id-old": 73,
+					"node-id": 35,
+					"security": "none",
+					"role": "licht",
+					"name": "LED Bulb 6 Multi-Color"
 				},
 				{
-					"code": "ZW100",
-					"name": "MultiSensor 6",
-					"node-id": 72,
 					"supplier": "AEON Labs",
-					"security": "none"
+					"code": "ZW100",
+					"node-id-old": 72,
+					"node-id": 37,
+					"security": "none",
+					"role": "multisensor",
+					"name": "MultiSensor 6"
 				}
 			]
 		},
@@ -24,26 +28,30 @@
 			"code": "garage",
 			"devices": [
 				{
-					"code": "ZWA002",
-					"name": "LED Bulb 6 Multi-Color",
-					"node-id": 71,
 					"supplier": "Aeotec Limited",
-					"security": "none"
-				},
-				{
-					"code": "ZW100",
-					"name": "MultiSensor 6",
-					"node-id": 70,
-					"supplier": "AEON Labs",
-					"security": "none"
-				},
-				{
-					"code": "700397",
-					"name": "Wall Plug Switch Outdoor Schuko (IP44)",
-					"node-id": 69,
-					"supplier": "Popp & Co",
+					"code": "ZWA002",
+					"node-id": 71,
+					"role": "licht",
 					"security": "none",
-					"target": "steckdose"
+					"name": "LED Bulb 6 Multi-Color"
+				},
+				{
+					"supplier": "AEON Labs",
+					"code": "ZW100",
+					"node-id-old": 70,
+					"node-id": 31,
+					"role": "multisensor",
+					"security": "none",
+					"name": "MultiSensor 6"
+				},
+				{
+					"supplier": "Popp & Co",
+					"code": "700397",
+					"node-id-alt": 69,
+					"node-id": 13,
+					"security": "none",
+					"role": "steckdose",
+					"name": "Wall Plug Switch Outdoor Schuko (IP44)"
 				}
 			]
 		},
@@ -51,18 +59,20 @@
 			"code": "hobbyraum",
 			"devices": [
 				{
-					"code": "ZW100",
-					"name": "MultiSensor 6",
-					"node-id": 68,
 					"supplier": "AEON Labs",
-					"security": "none"
+					"code": "ZW100",
+					"node-id": 68,
+					"security": "none",
+					"role": "multisensor",
+					"name": "MultiSensor 6"
 				},
 				{
-					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
-					"node-id": 74,
 					"supplier": "FIBARO System",
-					"security": "none"
+					"code": "FGWPE/F",
+					"node-id": 74,
+					"security": "none",
+					"role": "steckdose",
+					"name": "Wall Plug Gen5"
 				}
 			]
 		},
@@ -70,11 +80,12 @@
 			"code": "radkeller",
 			"devices": [
 				{
-					"code": "ZW117",
-					"name": "Range Extender 6",
-					"node-id": 61,
 					"supplier": "AEON Labs",
-					"security": "none"
+					"code": "ZW117",
+					"node-id": 61,
+					"security": "none",
+					"role": "extender",
+					"name": "Range Extender 6"
 				}
 			]
 		},
@@ -82,16 +93,21 @@
 			"code": "kuechezimmer",
 			"devices": [
 				{
+					"supplier": "Devolo home Control",
 					"code": "MT02792",
-					"name": "Smart Metering Plug",
 					"node-id": 33,
-					"supplier": "Devolo home Control"
+					"role": "steckdose",
+					"security": "none",
+					"name": "Smart Metering Plug"
 				},
 				{
+					"supplier": "McoHome Technology Co Ltd",
 					"code": "MH9-CO2-WD",
-					"name": "Multilevel Sensor",
-					"node-id": 27,
-					"supplier": "McoHome Technology Co Ltd"
+					"node-id-old": 27,
+					"node-id": ,
+					"role": "multisensor",
+					"security": "none",
+					"name": "Multilevel Sensor"
 				}
 			]
 		},
@@ -99,27 +115,29 @@
 			"code": "wohnzimmer",
 			"devices": [
 				{
+					"supplier": "FIBARO System",
 					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
 					"node-id": 66,
-					"supplier": "FIBARO System",
-					"target": "Saugroboter",
-					"security": "none"
-				},
-				{
-					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
-					"node-id": 23,
-					"supplier": "FIBARO System",
-					"target": "datacenter"
-				},
-				{
-					"code": "ZMNHBDx",
-					"name": "Flush 2 Relay",
-					"node-id": 76,
+					"role": "saugroboter",
 					"security": "none",
+					"name": "Wall Plug Gen5"
+				},
+				{
+					"supplier": "FIBARO System",
+					"code": "FGWPE/F",
+					"node-id-old": 23,
+					"node-id": 29,
+					"role": "datacenter",
+					"security": "none",
+					"name": "Wall Plug Gen5"
+				},
+				{
 					"supplier": "Qubino (Goap)",
-					"target": "zwift"
+					"code": "ZMNHBDx",
+					"node-id": 76,
+					"role": "zwift",
+					"security": "none",
+					"name": "Flush 2 Relay"
 				}
 			]
 		},
@@ -127,24 +145,28 @@
 			"code": "arbeitszimmer",
 			"devices": [
 				{
-					"code": "MH9-CO2-WD",
-					"name": "Multilevel Sensor",
-					"node-id": 67,
 					"supplier": "McoHome Technology Co Ltd",
-					"security": "none"
+					"code": "MH9-CO2-WD",
+					"node-id": 67,
+					"role": "multisensor",
+					"security": "none",
+					"name": "Multilevel Sensor"
 				},
 				{
-					"code": "ZMNHADx",
-					"name": "Flush 1 Relay",
-					"node-id": 50,
 					"supplier": "Qubino (Goap)",
-					"target": "powercord"
+					"code": "ZMNHADx",
+					"node-id": 50,
+					"role": "powercord",
+					"security": "none",
+					"name": "Flush 1 Relay"
 				},
 				{
+					"supplier": "AEON Labs",
 					"code": "ZW130",
-					"name": "WallMote Quad",
 					"node-id": 42,
-					"supplier": "AEON Labs"
+					"role": "control",
+					"security": "none",
+					"name": "WallMote Quad"
 				}
 			]
 		},
@@ -152,24 +174,28 @@
 			"code": "kinderzimmer",
 			"devices": [
 				{
+					"supplier": "McoHome Technology Co Ltd",
 					"code": "A8-9",
-					"name": "Multi-sensor",
 					"node-id": 57,
-					"supplier": "McoHome Technology Co Ltd"
+					"role": "multisensor",
+					"security": "none",
+					"name": "Multi-sensor"
 				},
 				{
-					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
-					"node-id": 64,
 					"supplier": "FIBARO System",
-					"target": "heizung",
-					"security": "none"
+					"code": "FGWPE/F",
+					"node-id": 64,
+					"role": "heizung",
+					"security": "none",
+					"name": "Wall Plug Gen5"
 				},
 				{
+					"supplier": "Devolo home Control",
 					"code": "MT2652",
-					"name": "Scene Switch",
 					"node-id": 49,
-					"supplier": "Devolo home Control"
+					"role": "control",
+					"security": "none",
+					"name": "Scene Switch"
 				}
 			]
 		},
@@ -177,10 +203,12 @@
 			"code": "pobox",
 			"devices": [
 				{
+					"supplier": "Aeotec Limited",
 					"code": "ZWA008",
-					"name": "Door Window Sensor 7",
 					"node-id": 58,
-					"supplier": "Aeotec Limited"
+					"role": "postbox",
+					"security": "none",
+					"name": "Door Window Sensor 7"
 				}
 			]
 		},
@@ -188,22 +216,30 @@
 			"code": "waschkeller",
 			"devices": [
 				{
+					"supplier": "Aeotec Limited",
 					"code": "ZWA002",
-					"name": "LED Bulb 6 Multi-Color",
 					"node-id": 55,
-					"supplier": "Aeotec Limited"
+					"role": "licht",
+					"security": "none",
+					"name": "LED Bulb 6 Multi-Color"
 				},
 				{
+					"supplier": "AEON Labs",
 					"code": "ZW100",
-					"name": "MultiSensor 6",
-					"node-id": 53,
-					"supplier": "AEON Labs"
+					"node-id-old": 53,
+					"node-id": 28,
+					"role": "multisensor",
+					"security": "none",
+					"name": "MultiSensor 6"
 				},
 				{
+					"supplier": "FIBARO System",
 					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
-					"node-id": 8,
-					"supplier": "FIBARO System"
+					"node-id-old": 8,
+					"node-id": 32,
+					"role": "steckdose",
+					"security": "none",
+					"name": "Wall Plug Gen5"
 				}
 			]
 		},
@@ -211,10 +247,12 @@
 			"code": "schlafzimmer",
 			"devices": [
 				{
+					"supplier": "McoHome Technology Co Ltd",
 					"code": "MH9-CO2-WD",
-					"name": "Multilevel Sensor",
 					"node-id": 26,
-					"supplier": "McoHome Technology Co Ltd"
+					"role": "multisensor",
+					"security": "none",
+					"name": "Multilevel Sensor"
 				}
 			]
 		},
@@ -222,19 +260,21 @@
 			"code": "flur",
 			"devices": [
 				{
-					"code": "ZW112",
-					"name": "Door Window Sensor 6",
-					"node-id": 30,
 					"supplier": "AEON Labs",
-					"target": "eingangtuer"
+					"code": "ZW112",
+					"node-id": 30,
+					"role": "eingangtuer",
+					"security": "none",
+					"name": "Door Window Sensor 6"
 				},
 				{
-					"code": "FGWPE/F",
-					"name": "Wall Plug Gen5",
-					"node-id": 65,
 					"supplier": "FIBARO System",
-					"target": "comm",
-					"security": "none"
+					"code": "FGWPE/F",
+					"node-id-old": 65,
+					"node-id": 26,
+					"role": "steckdose",
+					"security": "none",
+					"name": "Wall Plug Gen5"
 				}
 			]
 		},
@@ -242,11 +282,12 @@
 			"code": "keller",
 			"devices": [
 				{
-					"code": "FGK10x",
-					"name": "Door Opening Sensor",
-					"node-id": 11,
 					"supplier": "FIBARO System",
-					"target": "hinterhoftuer"
+					"code": "FGK10x",
+					"node-id": 11,
+					"role": "hinterhoftuer",
+					"security": "none",
+					"name": "Door Opening Sensor"
 				}
 			]
 		}

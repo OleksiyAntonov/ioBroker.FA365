@@ -12,9 +12,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"MH9-CO2-WD"
-					]
+					"const": "MH9-CO2-WD"
 				},
 				"name": {
 					"enum": [
@@ -22,9 +20,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"McoHome Technology Co Ltd"
-					]
+					"const": "McoHome Technology Co Ltd"
+				},
+				"role": {
+					"const": "multisensor"
 				}
 			}
 		},
@@ -37,9 +36,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"A8-9"
-					]
+					"const": "A8-9"
 				},
 				"name": {
 					"enum": [
@@ -47,9 +44,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"McoHome Technology Co Ltd"
-					]
+					"const": "McoHome Technology Co Ltd"
+				},
+				"role": {
+					"const": "multisensor"
 				}
 			}
 		}

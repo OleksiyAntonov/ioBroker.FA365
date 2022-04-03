@@ -12,9 +12,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"MT02792"
-					]
+					"const": "MT02792"
 				},
 				"name": {
 					"enum": [
@@ -22,9 +20,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"Devolo home Control"
-					]
+					"const": "Devolo home Control"
+				},
+				"role": {
+					"const": "steckdose"
 				}
 			}
 		},
@@ -37,9 +36,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"MT2652"
-					]
+					"const": "MT2652"
 				},
 				"name": {
 					"enum": [
@@ -47,9 +44,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"Devolo home Control"
-					]
+					"const": "Devolo home Control"
+				},
+				"role": {
+					"const": "control"
 				}
 			}
 		}

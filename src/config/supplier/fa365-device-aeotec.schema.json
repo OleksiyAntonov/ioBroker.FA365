@@ -12,9 +12,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZWA002"
-					]
+					"const": "ZWA002"
 				},
 				"name": {
 					"enum": [
@@ -22,9 +20,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"Aeotec Limited"
-					]
+					"const": "Aeotec Limited"
+				},
+				"role": {
+					"const": "licht"
 				}
 			}
 		},
@@ -37,9 +36,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZWA008"
-					]
+					"const": "ZWA008"
 				},
 				"name": {
 					"enum": [
@@ -47,8 +44,12 @@
 					]
 				},
 				"supplier": {
+					"const": "Aeotec Limited"
+				},
+				"role": {
 					"enum": [
-						"Aeotec Limited"
+						"tuer",
+						"postbox"
 					]
 				}
 			}
@@ -62,9 +63,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZW100"
-					]
+					"const": "ZW100"
 				},
 				"name": {
 					"enum": [
@@ -72,9 +71,10 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"AEON Labs"
-					]
+					"const": "AEON Labs"
+				},
+				"role": {
+					"const": "multisensor"
 				}
 			}
 		},
@@ -87,9 +87,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZW112"
-					]
+					"const": "ZW112"
 				},
 				"name": {
 					"enum": [
@@ -97,8 +95,12 @@
 					]
 				},
 				"supplier": {
+					"const": "AEON Labs"
+				},
+				"role": {
 					"enum": [
-						"AEON Labs"
+						"tuer",
+						"eingangtuer"
 					]
 				}
 			}
@@ -112,9 +114,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZW117"
-					]
+					"const": "ZW117"
 				},
 				"name": {
 					"enum": [
@@ -122,12 +122,14 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"AEON Labs"
-					]
+					"const": "AEON Labs"
+				},
+				"role": {
+					"const": "extender"
 				}
 			}
-		},		"aeon-labs-zw130": {
+		},
+		"aeon-labs-zw130": {
 			"allOf": [
 				{
 					"$ref": "./../fa365-device-base.schema.json#/definitions/device-base"
@@ -136,9 +138,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZW130"
-					]
+					"const": "ZW130"
 				},
 				"name": {
 					"enum": [
@@ -146,12 +146,12 @@
 					]
 				},
 				"supplier": {
-					"enum": [
-						"AEON Labs"
-					]
+					"const": "AEON Labs"
+				},
+				"role": {
+					"const": "control"
 				}
 			}
 		}
-
 	}
 }

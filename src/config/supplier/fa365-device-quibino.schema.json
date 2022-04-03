@@ -12,9 +12,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZMNHADx"
-					]
+					"const": "ZMNHADx"
 				},
 				"name": {
 					"enum": [
@@ -22,8 +20,12 @@
 					]
 				},
 				"supplier": {
+					"const": "Qubino (Goap)"
+				},
+				"role": {
 					"enum": [
-						"Qubino (Goap)"
+						"steckdose",
+						"powercord"
 					]
 				}
 			}
@@ -37,9 +39,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"ZMNHBDx"
-					]
+					"const": "ZMNHBDx"
 				},
 				"name": {
 					"enum": [
@@ -47,8 +47,12 @@
 					]
 				},
 				"supplier": {
+					"const": "Qubino (Goap)"
+				},
+				"role": {
 					"enum": [
-						"Qubino (Goap)"
+						"steckdose",
+						"zwift"
 					]
 				}
 			}

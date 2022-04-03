@@ -2,11 +2,15 @@
 
 export interface ISensorOpen {
 	readonly ChannelName: string;
-	/*
-		Return full qualified node name (FQNN)
-		exact name of event based on type of sensor
-	*/
+
+	// return full qualified node name(FQNN)
+	// exact name of event based on type of sensor
 	readonly Fqnn: string;
+
+	// Root Uri of target smartHome instance inside adapter
+	// fa365.0
+	readonly RootUri: string;
+
 	readonly SourceEventHash: number;
 	readonly StateText: string;
 

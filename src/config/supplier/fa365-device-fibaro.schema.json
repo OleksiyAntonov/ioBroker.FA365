@@ -12,9 +12,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"FGWPE/F"
-					]
+					"const": "FGWPE/F"
 				},
 				"name": {
 					"enum": [
@@ -22,8 +20,15 @@
 					]
 				},
 				"supplier": {
+					"const": "FIBARO System"
+				},
+				"role": {
 					"enum": [
-						"FIBARO System"
+						"steckdose",
+						"saugroboter",
+						"datacenter",
+						"heizung",
+						"comm"
 					]
 				}
 			}
@@ -37,9 +42,7 @@
 			"type": "object",
 			"properties": {
 				"code": {
-					"enum": [
-						"FGK10x"
-					]
+					"const": "FGK10x"
 				},
 				"name": {
 					"enum": [
@@ -47,8 +50,13 @@
 					]
 				},
 				"supplier": {
+					"const": "FIBARO System"
+				},
+				"role": {
 					"enum": [
-						"FIBARO System"
+						"tuer",
+						"fenster",
+						"hinterhoftuer"
 					]
 				}
 			}
