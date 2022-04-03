@@ -1,49 +1,48 @@
 // constants
-export const numUndefined: number = -1;
-export const numZero: number = 0;
-export const stringEmpty: string = "";
-export const valueUndefined: string = "Undefined";
+export const numUndefined = -1;
+export const numZero = 0;
+export const stringEmpty = "";
+export const valueUndefined = "Undefined";
 
 // list of initiators
 export const enum initiators {
-    eingangTuer = 1,
-    balkonTuer = 2,
-    postBox = 3
+	eingangTuer = 1,
+	balkonTuer = 2,
+	postBox = 3
 }
 
 export const initiatorsNames: Array<string> = [
-    "Eingangtuer",
-    "Balkontuer",
-    "postBox"
+	"Eingangtuer",
+	"Balkontuer",
+	"postBox"
 ];
 
+export const roleRoom = "room";
 
-export const roleRoom: string = "room";
-
-export const hostWettstettenName: string = "wettstetten";
-export const roomWohnungEingangName: string = "eingangWohnung";
-export const channelTuerName: string = "tuer";
-export const stateOpenedName: string = "open";
-export const stateOpenedTextName: string = "opentext";
+export const hostWettstettenName = "wettstetten";
+export const roomWohnungEingangName = "eingangWohnung";
+export const channelTuerName = "tuer";
+export const stateOpenedName = "open";
+export const stateOpenedTextName = "opentext";
 
 export const hostWettstettenUri: string = hostWettstettenName;
-export const roomWohnungEingangUri: string = `${hostWettstettenUri}.${roomWohnungEingangName}`;
-export const channelWohnungEingangTuerUri: string = `${roomWohnungEingangUri}.${channelTuerName}`;
+export const roomWohnungEingangUri = `${hostWettstettenUri}.${roomWohnungEingangName}`;
+export const channelWohnungEingangTuerUri = `${roomWohnungEingangUri}.${channelTuerName}`;
 // export const channelWohnungEingangTuerStateOpenedUri: string = `${channelWohnungEingangTuerUri}.${stateOpenedName}`;
 
-export const hauszaehlerName: string = "hauszaehler";
-export const wechselstromName: string = "wechselstrom";
-export const hauptzaehlerName: string = "hauptzaehler";
+export const hauszaehlerName = "hauszaehler";
+export const wechselstromName = "wechselstrom";
+export const hauptzaehlerName = "hauptzaehler";
 
-export const hauszaehlerUri: string = `${hostWettstettenUri}.${hauszaehlerName}`;
-export const hauszaehlerWechselstromUri: string = `${hauszaehlerUri}.${wechselstromName}`;
-export const hauptzaehlerWechselstromUri: string = `${hauszaehlerWechselstromUri}.${hauptzaehlerName}`;
+export const hauszaehlerUri = `${hostWettstettenUri}.${hauszaehlerName}`;
+export const hauszaehlerWechselstromUri = `${hauszaehlerUri}.${wechselstromName}`;
+export const hauptzaehlerWechselstromUri = `${hauszaehlerWechselstromUri}.${hauptzaehlerName}`;
 
 // statuses
-export const sensorStatusOpened: boolean = true;
-export const sensorStatusClosed: boolean = false;
+export const sensorStatusOpened = true;
+export const sensorStatusClosed = false;
 
-export const sensorStatusOpenedText: string = "Offnen";
-export const sensorStatusClosedText: string = "Zu";
+export const sensorStatusOpenedText = "Offnen";
+export const sensorStatusClosedText = "Zu";
 
-export const notificationChannelRoomWohnungEingangTuer: string = "Eingangtuer";
+export const notificationChannelRoomWohnungEingangTuer = "Eingangtuer";
